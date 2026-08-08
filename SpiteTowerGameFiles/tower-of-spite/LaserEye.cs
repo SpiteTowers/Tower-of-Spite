@@ -5,11 +5,13 @@ public partial class LaserEye : Node2D
 {
 	[Export] public Node2D Target;
 	
-	[Export] public float RayLength = 50f;
+	[Export] public float RayLength = 500f;
 	
 	private RayCast2D _rayCast;
+	private float _castAngle = 0;
 
 	private Line2D _debugLine;
+	private Sprite2D _debugPointer;
 	
 	
 	// Called when the node enters the scene tree for the first time.
@@ -27,7 +29,13 @@ public partial class LaserEye : Node2D
 	{
 		if (Target != null)
 		{
-			_rayCast.TargetPosition = Target.Position;
+			// _rayCast.TargetPosition = Vector2.FromAngle(_castAngle) * RayLength;
+			// _castAngle = _rayCast.TargetPosition.AngleTo(Target.Position - _rayCast.GlobalPosition);
+			_rayCast.TargetPosition = _rayCast.TargetPosition.DirectionTo((Target.Position - _rayCast.GlobalPosition) * RayLength);
+			_rayCast.TargetPosition *= RayLength;
+
+
+			// _rayCast.TargetPosition = Vector2.FromAngle((Target.Position - _rayCast.TargetPosition ).Angle()) * RayLength;
 		}
 		_debugLine.Points = new Vector2[2] {_rayCast.Position, _rayCast.GetTargetPosition()};
 		

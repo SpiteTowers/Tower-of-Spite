@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://laserEye.tscn" id="2_0xm2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
-size = Vector2(616, 46)
+size = Vector2(3174, 473)
 
 [node name="Node" type="Node" unique_id=1515416508]
 
@@ -15,9 +15,9 @@ position = Vector2(533, 292)
 position = Vector2(534, 462)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1090054901]
-position = Vector2(0, 2)
+position = Vector2(42, 215.5)
 shape = SubResource("RectangleShape2D_6knbt")
 
 [node name="LaserEye" parent="." unique_id=1236575398 node_paths=PackedStringArray("Target") instance=ExtResource("2_0xm2m")]
-position = Vector2(706, 298)
+position = Vector2(610, 407)
 Target = NodePath("../CharacterBody2D")
