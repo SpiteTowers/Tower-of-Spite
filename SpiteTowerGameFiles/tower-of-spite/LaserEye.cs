@@ -114,18 +114,16 @@ public partial class LaserEye : Node2D
 		RayCast.TargetPosition *= RayLength;
 		
 		// TODO: Make main raycast go till it hits ground/wall
-		// if (RayCast.IsColliding())
-		// {
-		// 	GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
-		// 	
-		// 	DebugLine.SetDefaultColor(Colors.Purple);
-		// 	
-		// }
+		if (RayCast.IsColliding())
+		{
+			GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
+			DebugLine.SetDefaultColor(Colors.Purple);
+		}
 	}
 
 	private void _debugUpdate()
 	{
-		DebugLine.Points = new Vector2[2] {RayCast.Position, RayCast.IsColliding() ? RayCast.GlobalPosition - RayCast.GetCollisionPoint()  : RayCast.GetTargetPosition()};
+		DebugLine.Points = new Vector2[2] {RayCast.Position, RayCast.IsColliding() ? RayCast.GetCollisionPoint() - RayCast.GetGlobalPosition()  : RayCast.GetTargetPosition()};
 		
 		if (RayCast.IsColliding())
 		{
