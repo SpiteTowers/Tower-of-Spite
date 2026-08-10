@@ -4,8 +4,7 @@ using System;
 public partial class LaserEye : Node2D
 {
 	[Export] public Node2D Target;
-	[Export] public float RayMaxLength = 50f;
-	[Export] public float RayLength = 500f;
+	[Export] public float RayLength = 250f;
 	
 	[Export] public float DefaultShotTimer = 3f; // in seconds; The default time the Laser Eye waits before shooting at the player
 	private float ShotTimer = 3f; // in seconds;
@@ -29,7 +28,7 @@ public partial class LaserEye : Node2D
 	public override void _Ready()
 	{
 		RayCast = GetNode<RayCast2D>("RayCast2D");
-		RayCast.SetTargetPosition(Vector2.Down * RayMaxLength);
+		RayCast.SetTargetPosition(Vector2.Down * RayLength);
 		
 		DebugLine = GetNode<Line2D>("DebugLine");
 		DebugLine.Show();
@@ -50,7 +49,6 @@ public partial class LaserEye : Node2D
 			IsTracking = true;
 		}
 		
-		// TODO: Make main raycast go till it hits ground/wall
 
 		if (IsTracking && !IsCharging)
 		{
@@ -77,28 +75,6 @@ public partial class LaserEye : Node2D
 		{
 			ShotTimer = DefaultShotTimer;
 		}
-		
-		// Old nonfunctional Shooting
-		/*
-		if (IsTracking && ShotTimer >= ShotDelay)
-		{
-			ShotTimer = DefaultShotTimer;
-			ShotTimer -= (float)delta;
-			IsTracking = ShotTimer < ShotDelay;
-		}
-		else if (ShotTimer <= ShotDelay)
-		{
-			ShotTimer -= (float)delta;
-			if (ShotTimer <= 0)
-			{
-				Shoot();
-			}
-		}
-		else
-		{
-			IsTracking = true;
-			ShotTimer = DefaultShotTimer;
-		*/
 	}
 
 	public void Shoot(double delta)
@@ -133,13 +109,23 @@ public partial class LaserEye : Node2D
 
 	private void _aim()
 	{
-		RayCast.TargetPosition = RayCast.TargetPosition.DirectionTo((Target.Position - RayCast.GlobalPosition) * RayLength);
+		// RayCast.TargetPosition = RayCast.TargetPosition.DirectionTo((Target.Position - RayCast.GlobalPosition) * RayLength);
+		RayCast.TargetPosition = Target.Position - RayCast.GlobalPosition;
 		RayCast.TargetPosition *= RayLength;
+		
+		// TODO: Make main raycast go till it hits ground/wall
+		// if (RayCast.IsColliding())
+		// {
+		// 	GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
+		// 	
+		// 	DebugLine.SetDefaultColor(Colors.Purple);
+		// 	
+		// }
 	}
 
 	private void _debugUpdate()
 	{
-		DebugLine.Points = new Vector2[2] {RayCast.Position, RayCast.GetTargetPosition()};
+		DebugLine.Points = new Vector2[2] {RayCast.Position, RayCast.IsColliding() ? RayCast.GlobalPosition - RayCast.GetCollisionPoint()  : RayCast.GetTargetPosition()};
 		
 		if (RayCast.IsColliding())
 		{

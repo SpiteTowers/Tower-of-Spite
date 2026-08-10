@@ -6,12 +6,14 @@
 [node name="LaserEye" type="Node2D" unique_id=1236575398 node_paths=PackedStringArray("Target")]
 script = ExtResource("1_0klxb")
 Target = NodePath("TestTarget")
+RayLength = 250.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=170164796]
 texture = ExtResource("2_whefx")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1062167698]
 target_position = Vector2(1, 410)
+hit_from_inside = true
 
 [node name="TestTarget" type="Node2D" parent="." unique_id=637579922]
 position = Vector2(185, 0)
