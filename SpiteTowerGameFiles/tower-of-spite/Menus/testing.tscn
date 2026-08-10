@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cntv605ru4l48"]
+
+[node name="Testing" type="Node" unique_id=901122589]
+
+[node name="Button" type="Button" parent="." unique_id=1098003215]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Player Movement"
