@@ -19,5 +19,5 @@ position = Vector2(42, 215.5)
 shape = SubResource("RectangleShape2D_6knbt")
 
 [node name="LaserEye" parent="." unique_id=1236575398 node_paths=PackedStringArray("Target") instance=ExtResource("2_0xm2m")]
-position = Vector2(610, 407)
+position = Vector2(609, 407)
 Target = NodePath("../CharacterBody2D")
