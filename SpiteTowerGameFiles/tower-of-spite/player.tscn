@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://odr8qirbducd"]
+
+[ext_resource type="Script" uid="uid://bh7mjied82op1" path="res://CharacterBody2d.cs" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://cjvbexcgubmej" path="res://PlaceholderSprites/Hazards/Ghost Clone.png" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
+size = Vector2(24, 57)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1288919104]
+script = ExtResource("1_4flbx")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=950666374]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=935340788]
+texture_filter = 1
+texture = ExtResource("2_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1142243847]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6knbt")
