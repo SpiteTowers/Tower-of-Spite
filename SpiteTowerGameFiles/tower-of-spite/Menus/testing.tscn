@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cntv605ru4l48"]
 
 [ext_resource type="Script" uid="uid://iwco03bj6pcd" path="res://Menus/Testing.cs" id="1_7gary"]
-[ext_resource type="PackedScene" uid="uid://odr8qirbducd" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
+[ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
 [ext_resource type="Texture2D" uid="uid://bqm2mqy8nlo3t" path="res://icon.svg" id="3_uiowa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
@@ -26,6 +26,7 @@ offset_bottom = 34.0
 text = "Player Movement"
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=10586039]
+collision_mask = 2
 
 [node name="GroundCollision" type="CollisionShape2D" parent="Ground" unique_id=1784048212]
 position = Vector2(575, 600)
