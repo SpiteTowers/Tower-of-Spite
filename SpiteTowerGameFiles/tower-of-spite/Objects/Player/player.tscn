@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://odr8qirbducd"]
+
+[ext_resource type="Script" uid="uid://bh7mjied82op1" path="res://Objects/Player/Player.cs" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://eqav6dsiuouv" path="res://Assets/PlaceholderSprites/Hazards/Ghost Clone.png" id="2_yw17q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnph5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yw17q")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
+size = Vector2(20, 56)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1288919104]
+script = ExtResource("1_4flbx")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=803304762]
+sprite_frames = SubResource("SpriteFrames_xnph5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=950666374]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=901254218]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2dgnj")
