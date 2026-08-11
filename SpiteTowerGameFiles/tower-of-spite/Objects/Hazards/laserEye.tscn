@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ba4676677xurh"]
 
 [ext_resource type="Script" uid="uid://c7ru71dd0awv6" path="res://Objects/Hazards/LaserEye.cs" id="1_0klxb"]
-[ext_resource type="Texture2D" uid="uid://c725eu7axqeik" path="res://PlaceholderSprites/Hazards/Dashblade.png" id="2_whefx"]
+[ext_resource type="Texture2D" uid="uid://dpnbajno7htws" path="res://Assets/PlaceholderSprites/Hazards/Dashblade.png" id="2_2e1wn"]
 
 [node name="LaserEye" type="Node2D" unique_id=1236575398 node_paths=PackedStringArray("Target")]
 script = ExtResource("1_0klxb")
 Target = NodePath("TestTarget")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=170164796]
-texture = ExtResource("2_whefx")
+texture = ExtResource("2_2e1wn")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1062167698]
 target_position = Vector2(1, 410)
