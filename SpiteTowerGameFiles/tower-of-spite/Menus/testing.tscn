@@ -26,6 +26,7 @@ offset_bottom = 34.0
 text = "Player Movement"
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=10586039]
+collision_mask = 2
 
 [node name="GroundCollision" type="CollisionShape2D" parent="Ground" unique_id=1784048212]
 position = Vector2(575, 600)
