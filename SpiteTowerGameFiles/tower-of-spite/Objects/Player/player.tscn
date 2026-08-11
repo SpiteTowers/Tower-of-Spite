@@ -6,8 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
 size = Vector2(24, 57)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
+size = Vector2(24, 57)
+
 [node name="Player" type="CharacterBody2D" unique_id=1288919104]
-collision_layer = 2
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_yw17q")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -21,3 +25,13 @@ texture = ExtResource("2_l2ya6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1142243847]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_6knbt")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1708840807]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1173082340]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_2dgnj")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="OnHurtboxAreaEntered"]

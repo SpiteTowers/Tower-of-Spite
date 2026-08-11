@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://c7ru71dd0awv6" path="res://Objects/Hazards/LaserEye.cs" id="1_0klxb"]
 [ext_resource type="Texture2D" uid="uid://dpnbajno7htws" path="res://Assets/PlaceholderSprites/Hazards/Dashblade.png" id="2_2e1wn"]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2dgnj"]
+b = Vector2(0, 54)
+
 [node name="LaserEye" type="Node2D" unique_id=1236575398 node_paths=PackedStringArray("Target")]
 script = ExtResource("1_0klxb")
 Target = NodePath("TestTarget")
@@ -18,3 +21,8 @@ hit_from_inside = true
 position = Vector2(185, 0)
 
 [node name="DebugLine" type="Line2D" parent="." unique_id=953922045]
+
+[node name="LaserCollision" type="Area2D" parent="." unique_id=966199953]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserCollision" unique_id=1018144991]
+shape = SubResource("SegmentShape2D_2dgnj")
