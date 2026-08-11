@@ -4,12 +4,12 @@
 # Default Controls
 # Keyboard
 # Arrow Keys - Movement/Dash Direction
-# Shift - Run
-# Z - Ability (Dive, Dash, Ledge Dive, Etc.)
+# Shift - Dash
+# Z - Ability
 # X - Jump
 # Alt. Keyboard
 # WASD - Movement
-# Shift - Run
+# Shift - Dash
 # P - Ability
 # Space - Jump
 # Controller (Xbox/Playstation/Nintendo)
