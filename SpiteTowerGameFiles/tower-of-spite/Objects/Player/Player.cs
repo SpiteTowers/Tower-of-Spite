@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace TowerofSpite.Objects.Player;
 
 public partial class Player : CharacterBody2D
 {
