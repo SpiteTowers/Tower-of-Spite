@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
 size = Vector2(24, 57)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
-size = Vector2(24, 57)
+[sub_resource type="CircleShape2D" id="CircleShape2D_utjab"]
+radius = 6.519202
 
 [node name="Player" type="CharacterBody2D" unique_id=1288919104]
 collision_layer = 8
@@ -31,7 +31,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1173082340]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_2dgnj")
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_utjab")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="OnHurtboxAreaEntered"]

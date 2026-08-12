@@ -126,8 +126,8 @@ public partial class LaserEye : Node2D
 			}
 		}
 		
-		GD.Print(ShotDelay);
-		GD.Print(RechargeTimer);
+		// GD.Print(ShotDelay);
+		// GD.Print(RechargeTimer);
 	}
 
 	private void _aim()
@@ -139,8 +139,8 @@ public partial class LaserEye : Node2D
 		// TODO: Make main raycast go till it hits ground/wall
 		if (RayCast.IsColliding())
 		{
-			GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
-			DebugLine.SetDefaultColor(Colors.Purple);
+			// GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
+			// DebugLine.SetDefaultColor(Colors.Purple);
 		}
 	}
 
