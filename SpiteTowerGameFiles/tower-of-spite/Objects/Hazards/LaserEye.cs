@@ -12,7 +12,10 @@ public partial class LaserEye : Node2D
 	private float ShotDelay = 0.1f; // in seconds;
 	[Export] public float DefaultRecharge = 0.3f;
 	private float RechargeTimer = 0.3f;
-	
+
+	private Area2D LaserCollision;
+	private CollisionShape2D CollisionShape;
+	private SegmentShape2D LaserShape;
 	private RayCast2D RayCast;
 	private Timer Timer;
 	private float CastAngle = 0;
@@ -24,6 +27,11 @@ public partial class LaserEye : Node2D
 	private Line2D DebugLine;
 
 
+	public void SetTarget(Node2D target)
+	{
+		Target = target;
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -32,6 +40,10 @@ public partial class LaserEye : Node2D
 		
 		DebugLine = GetNode<Line2D>("DebugLine");
 		DebugLine.Show();
+		
+		LaserCollision = GetNode<Area2D>("LaserCollision");
+		CollisionShape = GetNode<CollisionShape2D>("LaserCollision/CollisionShape2D");
+		LaserShape = CollisionShape.Shape as SegmentShape2D;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -75,6 +87,17 @@ public partial class LaserEye : Node2D
 		{
 			ShotTimer = DefaultShotTimer;
 		}
+
+		LaserShape.A = Vector2.Zero;
+
+		if (RayCast.IsColliding())
+		{
+			LaserShape.B = LaserCollision.ToLocal(RayCast.GetCollisionPoint());
+		}
+		else
+		{
+			LaserShape.B = RayCast.TargetPosition;
+		}
 	}
 
 	public void Shoot(double delta)
@@ -87,7 +110,7 @@ public partial class LaserEye : Node2D
 		}
 		else
 		{
-			// TODO: Add hitbox for the shot
+			LaserCollision.SetCollisionLayerValue(3, true);
 			DebugLine.DefaultColor = Colors.LimeGreen;
 		
 			if (RechargeTimer >= 0)
@@ -96,7 +119,7 @@ public partial class LaserEye : Node2D
 			}
 			else
 			{
-				
+				LaserCollision.SetCollisionLayerValue(3, false);
 				IsCharging = false;
 				ShotTimer = DefaultShotTimer;
 				IsShooting = false;

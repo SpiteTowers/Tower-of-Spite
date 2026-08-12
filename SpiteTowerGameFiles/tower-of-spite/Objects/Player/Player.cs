@@ -1,13 +1,19 @@
 using Godot;
-using System;
+
+namespace TowerofSpite.Objects.Player;
 
 public partial class Player : CharacterBody2D
 {
+	[Signal] public delegate void PlayerDiedEventHandler();
+	
 	[Export] public float GravityScale = 1.0f;
 	[Export] public int DashSpeed = 800;
 	[Export] public float DashTime = 0.15f;
 	[Export] public float DashDeceleration = 2500.0f;
 	
+	private float DropThroughTimer = 0.0f;
+	private float DropThroughTime = 0.15f;
+	private bool DroppingThrough = false;
 	private float DashTimer = 0.0f;
 	private bool CanDash = true;
 	private bool Dashing = false;
@@ -16,6 +22,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// Resets Dash on floor
 		if (IsOnFloor())
 		{
 			CanDash = true;
@@ -33,6 +40,27 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+		}
+
+		// Drop through platforms
+		if (Input.IsActionPressed("move_down") && !Dashing)
+		{
+			DroppingThrough = true;
+			DropThroughTimer = DropThroughTime;
+			
+			SetCollisionMaskValue(2, false);
+		}
+		
+		// Handles falling through platforms
+		if (DroppingThrough)
+		{
+			DropThroughTimer -= (float)delta;
+			
+			if (DropThroughTimer <= 0)
+			{
+				DroppingThrough = false;
+				SetCollisionMaskValue(2, true);
+			}
 		}
 		
 		// Handle Dash
@@ -52,7 +80,8 @@ public partial class Player : CharacterBody2D
 			CanDash = false;
 			DashTimer = DashTime;
 		}
-
+		
+		// Deals with dash timer and reseting dash
 		if (Dashing)
 		{
 			DashTimer -= (float)delta;
@@ -76,9 +105,19 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-
-
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+	
+	public void OnHurtboxAreaEntered(Area2D area)
+	{
+		KillPlayer();
+	}
+
+	private void KillPlayer()
+	{
+		EmitSignalPlayerDied();
+		GD.Print("Player Killed");
+		this.QueueFree();
 	}
 }

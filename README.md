@@ -21,3 +21,7 @@
 # Artists: Tommy Rodriguez, Daniel Starr
 # Coders: Bode Anderson, Tommy Rodriguez, Daniel Starr
 
+# Collision Layers Meaning
+# 1-Ground
+# 2-Platforms
+# 3-Damage

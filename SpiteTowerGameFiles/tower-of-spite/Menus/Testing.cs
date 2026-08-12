@@ -1,13 +1,19 @@
 using Godot;
 using System;
+using TowerofSpite.Objects.Player;
 
 public partial class Testing : Node
 {
-	[Export]
-	public PackedScene PlayerScene;
+	[Export] public PackedScene PlayerScene;
+	[Export] public PackedScene EyeScene;
+	
+	private Player player;
+	private LaserEye eye;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		SpawnPlayer();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,10 +21,28 @@ public partial class Testing : Node
 	{
 	}
 
-	public void OnPlayerMovementPressed()
+	public void OnEyeTestingPressed()
 	{
-		Node2D player = PlayerScene.Instantiate<Node2D>();
+		eye = EyeScene.Instantiate<LaserEye>();
+		AddChild(eye);
+		eye.Position = new Vector2(500, 300);
+		eye.SetTarget(player);
+	}
+
+	public void OnPlayerDied()
+	{
+		SpawnPlayer();
+	}
+	
+	private void SpawnPlayer()
+	{
+		player = PlayerScene.Instantiate<Player>();
 		AddChild(player);
 		player.Position = new Vector2(500, 300);
+		if (eye != null)
+		{
+			eye.SetTarget(player);
+		}
+		player.PlayerDied += OnPlayerDied;
 	}
 }

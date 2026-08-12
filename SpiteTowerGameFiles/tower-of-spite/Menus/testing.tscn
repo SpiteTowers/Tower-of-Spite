@@ -1,15 +1,49 @@
 [gd_scene format=3 uid="uid://cntv605ru4l48"]
 
 [ext_resource type="Script" uid="uid://iwco03bj6pcd" path="res://Menus/Testing.cs" id="1_7gary"]
-[ext_resource type="PackedScene" uid="uid://odr8qirbducd" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
-[ext_resource type="Texture2D" uid="uid://bqm2mqy8nlo3t" path="res://icon.svg" id="3_uiowa"]
+[ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
+[ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/laserEye.tscn" id="3_3a8at"]
+[ext_resource type="Texture2D" uid="uid://bnid6kaqipdys" path="res://Assets/PlaceholderSprites/BasicSectionStructure.png" id="4_uiowa"]
+[ext_resource type="Texture2D" uid="uid://b2gp5rfaidn7u" path="res://Assets/PlaceholderSprites/Hazards/Sawblade.png" id="5_3a8at"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
-size = Vector2(1150, 92)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ho5r"]
+size = Vector2(1152, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un2l8"]
+size = Vector2(230, 171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1vgu"]
+size = Vector2(326, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd4b3"]
+size = Vector2(239, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo6i1"]
+size = Vector2(198, 36)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2dgnj"]
+a = Vector2(1, 164)
+b = Vector2(262, 165)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_un2l8"]
+a = Vector2(949, 226)
+b = Vector2(697, 226)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_w1vgu"]
+a = Vector2(0, 364)
+b = Vector2(229, 364)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vd4b3"]
+a = Vector2(951, 50)
+b = Vector2(1148, 50)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2dgnj"]
+radius = 29.068884
 
 [node name="Testing" type="Node" unique_id=901122589]
 script = ExtResource("1_7gary")
 PlayerScene = ExtResource("2_oa8s1")
+EyeScene = ExtResource("3_3a8at")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1817926840]
 anchors_preset = 15
@@ -17,23 +51,70 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="PlayerMovement" type="Button" parent="." unique_id=1098003215]
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 145.0
-offset_bottom = 34.0
-text = "Player Movement"
+texture = ExtResource("4_uiowa")
+expand_mode = 1
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=10586039]
 
 [node name="GroundCollision" type="CollisionShape2D" parent="Ground" unique_id=1784048212]
-position = Vector2(575, 600)
-shape = SubResource("RectangleShape2D_2dgnj")
+position = Vector2(576, 609.5)
+shape = SubResource("RectangleShape2D_2ho5r")
+one_way_collision_direction = Vector2(0, -1)
 
-[node name="GroundTexture" type="Sprite2D" parent="Ground" unique_id=1451741061]
-position = Vector2(575.75, 601.49915)
-scale = Vector2(9.035155, 0.6953254)
-texture = ExtResource("3_uiowa")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1710506127]
+position = Vector2(841, 485.5)
+shape = SubResource("RectangleShape2D_un2l8")
 
-[connection signal="pressed" from="PlayerMovement" to="." method="OnPlayerMovementPressed"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground" unique_id=2025047056]
+position = Vector2(429, 180.5)
+shape = SubResource("RectangleShape2D_w1vgu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground" unique_id=743319363]
+position = Vector2(136.5, 35)
+shape = SubResource("RectangleShape2D_vd4b3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground" unique_id=1943609428]
+position = Vector2(1052, 242)
+shape = SubResource("RectangleShape2D_yo6i1")
+
+[node name="Platforms" type="StaticBody2D" parent="." unique_id=1126967374]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Platforms" unique_id=1332397203]
+shape = SubResource("SegmentShape2D_2dgnj")
+one_way_collision = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Platforms" unique_id=1907067282]
+shape = SubResource("SegmentShape2D_un2l8")
+one_way_collision = true
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Platforms" unique_id=348379615]
+shape = SubResource("SegmentShape2D_w1vgu")
+one_way_collision = true
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Platforms" unique_id=964860685]
+shape = SubResource("SegmentShape2D_vd4b3")
+one_way_collision = true
+
+[node name="EyeTesting" type="Button" parent="." unique_id=1277356012]
+offset_left = 279.0
+offset_top = 12.0
+offset_right = 374.0
+offset_bottom = 43.0
+text = "Eye Testing"
+
+[node name="Kill Blade" type="Area2D" parent="." unique_id=2007697223]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Kill Blade" unique_id=26522599]
+position = Vector2(1089, 161)
+scale = Vector2(2.90625, 2.90625)
+texture = ExtResource("5_3a8at")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Blade" unique_id=1783791658]
+position = Vector2(1089, 161)
+shape = SubResource("CircleShape2D_2dgnj")
+
+[connection signal="pressed" from="EyeTesting" to="." method="OnEyeTestingPressed"]
