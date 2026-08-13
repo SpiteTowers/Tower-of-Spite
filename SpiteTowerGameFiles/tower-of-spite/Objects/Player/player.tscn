@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://blh4kehaykwwb"]
 
 [ext_resource type="Script" uid="uid://bh7mjied82op1" path="res://Objects/Player/Player.cs" id="1_yw17q"]
-[ext_resource type="Texture2D" uid="uid://eqav6dsiuouv" path="res://Assets/PlaceholderSprites/Hazards/Ghost Clone.png" id="2_l2ya6"]
+[ext_resource type="Texture2D" uid="uid://ryqq5oundue6" path="res://PlaceholderSprites/Player/MainChar1.png" id="2_yw17q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
-size = Vector2(24, 57)
+size = Vector2(15, 43)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_utjab"]
-radius = 6.519202
+radius = 3.535534
 
 [node name="Player" type="CharacterBody2D" unique_id=1288919104]
 collision_layer = 8
@@ -20,10 +20,10 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=935340788]
 texture_filter = 1
-texture = ExtResource("2_l2ya6")
+texture = ExtResource("2_yw17q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1142243847]
-position = Vector2(0, 0.5)
+position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_6knbt")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1708840807]
@@ -31,7 +31,6 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1173082340]
-position = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_utjab")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="OnHurtboxAreaEntered"]

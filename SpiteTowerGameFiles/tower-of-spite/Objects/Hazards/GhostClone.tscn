@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://upfagmvmrv53"]
+
+[ext_resource type="Script" path="res://Objects/Hazards/GhostClone.cs" id="1_a2byf"]
+[ext_resource type="Texture2D" uid="uid://eqav6dsiuouv" path="res://Assets/PlaceholderSprites/Hazards/Ghost Clone.png" id="2_a2byf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gtkgi"]
+radius = 8.0
+height = 33.0
+
+[node name="GhostClone" type="Area2D" unique_id=625900572]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_a2byf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=431877915]
+texture_filter = 1
+texture = ExtResource("2_a2byf")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2007188289]
+position = Vector2(0, 0.5)
+shape = SubResource("CapsuleShape2D_gtkgi")
