@@ -31,7 +31,7 @@ public partial class Testing : Node
 
 	public void OnPlayerDied()
 	{
-		SpawnPlayer();
+		CallDeferred(MethodName.SpawnPlayer);
 	}
 	
 	private void SpawnPlayer()
