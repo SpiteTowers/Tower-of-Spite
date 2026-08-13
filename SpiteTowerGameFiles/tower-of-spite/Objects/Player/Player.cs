@@ -19,25 +19,25 @@ public partial class Player : CharacterBody2D
 	private bool Dashing = false;
 	private const float Speed = 300.0f;
 	private const float JumpVelocity = -400.0f;
+	private bool isOnFloor;
 
 	public override void _PhysicsProcess(double delta)
 	{
+		isOnFloor = IsOnFloor();
+		
 		// Resets Dash on floor
-		if (IsOnFloor())
-		{
-			CanDash = true;
-		}
+		CanDash = isOnFloor;
 		
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
-		if (!IsOnFloor())
+		if (!isOnFloor)
 		{
 			velocity += GetGravity() * GravityScale * (float)delta;
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		if (Input.IsActionJustPressed("jump") && isOnFloor)
 		{
 			velocity.Y = JumpVelocity;
 		}
