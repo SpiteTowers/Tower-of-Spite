@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://77umhlqwlx0f"]
+
+[ext_resource type="Script" uid="uid://bu8h46jhncl1p" path="res://LevelGenerator.cs" id="1_ciddx"]
+[ext_resource type="PackedScene" uid="uid://cqxiepi6r4mb3" path="res://Rooms/room_template.tscn" id="2_1mgij"]
+
+[node name="LevelGenerator" type="Node2D" unique_id=2135243117]
+script = ExtResource("1_ciddx")
+RoomOptions = Array[PackedScene]([ExtResource("2_1mgij")])
