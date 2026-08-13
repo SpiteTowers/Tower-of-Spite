@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://iwco03bj6pcd" path="res://Menus/Testing.cs" id="1_7gary"]
 [ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
 [ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/laserEye.tscn" id="3_3a8at"]
+[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/saw.tscn" id="4_o8tfi"]
 [ext_resource type="Texture2D" uid="uid://b2gp5rfaidn7u" path="res://Assets/PlaceholderSprites/Hazards/Sawblade.png" id="5_3a8at"]
 [ext_resource type="TileSet" uid="uid://dje2acfy4voky" path="res://Assets/PlaceholderSprites/placeholderTileset.tres" id="5_o8tfi"]
 
@@ -13,6 +14,7 @@ radius = 29.068884
 script = ExtResource("1_7gary")
 PlayerScene = ExtResource("2_oa8s1")
 EyeScene = ExtResource("3_3a8at")
+SawScene = ExtResource("4_o8tfi")
 
 [node name="EyeTesting" type="Button" parent="." unique_id=1277356012]
 offset_left = 279.0
@@ -20,6 +22,13 @@ offset_top = 12.0
 offset_right = 374.0
 offset_bottom = 43.0
 text = "Eye Testing"
+
+[node name="SawTesting" type="Button" parent="." unique_id=1347623239]
+offset_left = 383.0
+offset_top = 13.0
+offset_right = 483.0
+offset_bottom = 44.0
+text = "Saw Testing"
 
 [node name="Kill Blade" type="Area2D" parent="." unique_id=2007697223]
 collision_layer = 4
@@ -40,3 +49,4 @@ tile_map_data = PackedByteArray("AAAAACEAAAACAAIAAAAAACIAAAACAAEAAAAAACMAAAACAAE
 tile_set = ExtResource("5_o8tfi")
 
 [connection signal="pressed" from="EyeTesting" to="." method="OnEyeTestingPressed"]
+[connection signal="pressed" from="SawTesting" to="." method="OnSawTestingPressed"]

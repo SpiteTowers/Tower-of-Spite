@@ -6,9 +6,11 @@ public partial class Testing : Node
 {
 	[Export] public PackedScene PlayerScene;
 	[Export] public PackedScene EyeScene;
+	[Export] public PackedScene SawScene;
 	
 	private Player player;
 	private LaserEye eye;
+	private SawMain saw;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,6 +29,14 @@ public partial class Testing : Node
 		AddChild(eye);
 		eye.Position = new Vector2(500, 300);
 		eye.SetTarget(player);
+	}
+
+	public void OnSawTestingPressed()
+	{
+		saw = SawScene.Instantiate<SawMain>();
+		AddChild(saw);
+		saw.Position = new Vector2(50, 175);
+		saw.Initialize(150);
 	}
 
 	public void OnPlayerDied()

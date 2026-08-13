@@ -1,33 +1,22 @@
 using Godot;
 using System;
 
-public partial class Saw : StaticBody2D
+public partial class Saw : Area2D
 {
 
 	[Export] public float Speed = 100.0f;
-	[Export] public PackedScene StartPiece;
-	[Export] public PackedScene MiddlePiece;
-	[Export] public PackedScene EndPiece;
 	
 	private float _trackLength;
 	private float _distance;
-	private float _direction = 1.0f;
-	private Line2D _track;
-	private const float PieceSize = 32.0f;
-	private const float EndSize = 16.0f;
+	private float _direction;
 
-	public void Initialize(float trackLength)
+	public void Initialize(float trackLength, float distance, float direction)
 	{
 		_trackLength = trackLength;
-		_distance = 0;
-		_track = GetNode<Line2D>("Track");
-
-		_track.Points = new Vector2[]
-		{
-			Vector2.Zero, new Vector2(_trackLength, 0)
-		};
-
+		_distance = distance;
+		_direction = direction;
 	}
+	
 	public override void _Ready()
 	{
 	}
@@ -41,7 +30,7 @@ public partial class Saw : StaticBody2D
 			_distance = _trackLength;
 			_direction *= -1;
 		}
-		else if (_distance <= _trackLength)
+		else if (_distance <= 0)
 		{
 			_distance = 0;
 			_direction *= -1;
