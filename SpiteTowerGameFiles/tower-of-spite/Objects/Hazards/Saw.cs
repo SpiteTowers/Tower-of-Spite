@@ -12,9 +12,16 @@ public partial class Saw : Area2D
 
 	public void Initialize(float trackLength, float distance, float direction)
 	{
-		_trackLength = trackLength;
-		_distance = distance;
-		_direction = direction;
+		this._trackLength = trackLength;
+		_distance = 0;
+		_track = GetNode<Line2D>("Track");
+
+		_track.Points = new Vector2[]
+		{
+			Vector2.Zero, new Vector2(trackLength, 0)
+		};
+		
+		
 	}
 	
 	public override void _Ready()

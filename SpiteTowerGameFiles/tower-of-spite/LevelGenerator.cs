@@ -25,7 +25,6 @@ public partial class LevelGenerator : Node2D
 		GetParent().AddChild(rooms[0]);
 		for (int i = 1; i < numRooms; i++)
 		{
-
 			bool invalidRoom = false;
 			do
 			{
