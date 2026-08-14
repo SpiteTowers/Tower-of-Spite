@@ -18,15 +18,16 @@ public partial class Saw : StaticBody2D
 
 	public void Initialize(float trackLength)
 	{
-		_trackLength = trackLength;
+		this._trackLength = trackLength;
 		_distance = 0;
 		_track = GetNode<Line2D>("Track");
 
 		_track.Points = new Vector2[]
 		{
-			Vector2.Zero, new Vector2(_trackLength, 0)
+			Vector2.Zero, new Vector2(trackLength, 0)
 		};
-
+		
+		
 	}
 	public override void _Ready()
 	{
