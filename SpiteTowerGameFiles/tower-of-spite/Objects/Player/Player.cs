@@ -26,7 +26,10 @@ public partial class Player : CharacterBody2D
 		isOnFloor = IsOnFloor();
 		
 		// Resets Dash on floor
-		CanDash = isOnFloor;
+		if (isOnFloor)
+		{
+			CanDash = true;
+		}
 		
 		Vector2 velocity = Velocity;
 

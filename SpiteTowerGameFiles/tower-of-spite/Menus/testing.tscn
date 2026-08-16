@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://iwco03bj6pcd" path="res://Menus/Testing.cs" id="1_7gary"]
 [ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
 [ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/laserEye.tscn" id="3_3a8at"]
+[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/saw.tscn" id="4_hj1kl"]
 [ext_resource type="Texture2D" uid="uid://lapgi5xiupw7" path="res://Assets/PlaceholderSprites/New Piskel-1.png.png" id="4_o8tfi"]
 [ext_resource type="Texture2D" uid="uid://b2gp5rfaidn7u" path="res://Assets/PlaceholderSprites/Hazards/Sawblade.png" id="5_3a8at"]
 [ext_resource type="TileSet" uid="uid://dje2acfy4voky" path="res://Assets/PlaceholderSprites/placeholderTileset.tres" id="5_o8tfi"]
@@ -14,7 +15,7 @@ radius = 29.068884
 script = ExtResource("1_7gary")
 PlayerScene = ExtResource("2_oa8s1")
 EyeScene = ExtResource("3_3a8at")
-SawScene = ExtResource("4_o8tfi")
+SawScene = ExtResource("4_hj1kl")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=990921047]
 offset_right = 1152.0
