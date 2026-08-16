@@ -7,10 +7,12 @@ public partial class Testing : Node
 	[Export] public PackedScene PlayerScene;
 	[Export] public PackedScene EyeScene;
 	[Export] public PackedScene SawScene;
+	[Export] public PackedScene GhostCloneScene;
 	
 	private Player player;
 	private LaserEye eye;
 	private SawMain saw;
+	private GhostClone clone;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -39,6 +41,14 @@ public partial class Testing : Node
 		saw.Initialize(150);
 	}
 
+	public void OnGhostCloneTestingPressed()
+	{
+		clone = GhostCloneScene.Instantiate<GhostClone>();
+		AddChild(clone);
+		clone.Position = new Vector2(500, 300);
+		clone.SetTarget(player);
+	}
+
 	public void OnPlayerDied()
 	{
 		CallDeferred(MethodName.SpawnPlayer);
@@ -52,6 +62,11 @@ public partial class Testing : Node
 		if (eye != null)
 		{
 			eye.SetTarget(player);
+		}
+
+		if (clone != null)
+		{
+			clone.SetTarget(player);
 		}
 		player.PlayerDied += OnPlayerDied;
 	}

@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://iwco03bj6pcd" path="res://Menus/Testing.cs" id="1_7gary"]
 [ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="2_oa8s1"]
-[ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/laserEye.tscn" id="3_3a8at"]
-[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/saw.tscn" id="4_hj1kl"]
+[ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/LaserEye/laserEye.tscn" id="3_3a8at"]
+[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/Saw/saw.tscn" id="4_hj1kl"]
 [ext_resource type="Texture2D" uid="uid://lapgi5xiupw7" path="res://Assets/PlaceholderSprites/New Piskel-1.png.png" id="4_o8tfi"]
 [ext_resource type="Texture2D" uid="uid://b2gp5rfaidn7u" path="res://Assets/PlaceholderSprites/Hazards/Sawblade.png" id="5_3a8at"]
+[ext_resource type="PackedScene" uid="uid://upfagmvmrv53" path="res://Objects/Hazards/GhostClone/GhostClone.tscn" id="5_gyyt1"]
 [ext_resource type="TileSet" uid="uid://dje2acfy4voky" path="res://Assets/PlaceholderSprites/placeholderTileset.tres" id="5_o8tfi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2dgnj"]
@@ -16,6 +17,7 @@ script = ExtResource("1_7gary")
 PlayerScene = ExtResource("2_oa8s1")
 EyeScene = ExtResource("3_3a8at")
 SawScene = ExtResource("4_hj1kl")
+GhostCloneScene = ExtResource("5_gyyt1")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=990921047]
 offset_right = 1152.0
@@ -37,6 +39,13 @@ offset_right = 483.0
 offset_bottom = 44.0
 text = "Saw Testing"
 
+[node name="GhostCloneTesting" type="Button" parent="." unique_id=133806272]
+offset_left = 495.0
+offset_top = 12.0
+offset_right = 657.0
+offset_bottom = 43.0
+text = "Ghost Clone Testing"
+
 [node name="Kill Blade" type="Area2D" parent="." unique_id=2007697223]
 collision_layer = 4
 collision_mask = 0
@@ -57,3 +66,4 @@ tile_set = ExtResource("5_o8tfi")
 
 [connection signal="pressed" from="EyeTesting" to="." method="OnEyeTestingPressed"]
 [connection signal="pressed" from="SawTesting" to="." method="OnSawTestingPressed"]
+[connection signal="pressed" from="GhostCloneTesting" to="." method="OnGhostCloneTestingPressed"]
