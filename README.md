@@ -25,3 +25,4 @@
 # 1-Ground
 # 2-Platforms
 # 3-Damage
+# 4-Collectable
