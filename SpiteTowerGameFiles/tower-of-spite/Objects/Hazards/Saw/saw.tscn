@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhitvq4ebc7dj"]
 
-[ext_resource type="Script" uid="uid://dhmpljbucu2b0" path="res://Objects/Hazards/Saw.cs" id="1_01ytj"]
-[ext_resource type="Script" uid="uid://bu0jpbm67d3m1" path="res://Objects/Hazards/SawMain.cs" id="1_njwai"]
+[ext_resource type="Script" uid="uid://dhmpljbucu2b0" path="res://Objects/Hazards/Saw/Saw.cs" id="1_01ytj"]
+[ext_resource type="Script" uid="uid://bu0jpbm67d3m1" path="res://Objects/Hazards/Saw/SawMain.cs" id="1_njwai"]
 [ext_resource type="Texture2D" uid="uid://b2gp5rfaidn7u" path="res://Assets/PlaceholderSprites/Hazards/Sawblade.png" id="2_jefev"]
 [ext_resource type="Texture2D" uid="uid://bnqccm7fvxg2s" path="res://PlaceholderSprites/Hazards/SawTrack.png" id="3_01ytj"]
 [ext_resource type="Texture2D" uid="uid://c5pfgej3bi1n4" path="res://Assets/PlaceholderSprites/Hazards/SawTrackStart.png" id="3_4vb7s"]

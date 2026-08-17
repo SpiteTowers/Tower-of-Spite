@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ba4676677xurh"]
 
-[ext_resource type="Script" uid="uid://c7ru71dd0awv6" path="res://Objects/Hazards/LaserEye.cs" id="1_0klxb"]
+[ext_resource type="Script" uid="uid://c7ru71dd0awv6" path="res://Objects/Hazards/LaserEye/LaserEye.cs" id="1_0klxb"]
 [ext_resource type="Texture2D" uid="uid://dpnbajno7htws" path="res://Assets/PlaceholderSprites/Hazards/Dashblade.png" id="2_2e1wn"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2dgnj"]
