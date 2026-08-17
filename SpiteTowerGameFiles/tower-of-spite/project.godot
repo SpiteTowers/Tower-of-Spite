@@ -13,7 +13,6 @@ config_version=5
 config/name="Tower of Spite"
 run/main_scene="uid://cntv605ru4l48"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 
