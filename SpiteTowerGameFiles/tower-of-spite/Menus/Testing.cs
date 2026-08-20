@@ -58,7 +58,7 @@ public partial class Testing : Node
 	{
 		player = PlayerScene.Instantiate<Player>();
 		AddChild(player);
-		player.Position = new Vector2(500, 300);
+		player.Position = new Vector2(700, 300);
 		if (eye != null)
 		{
 			eye.SetTarget(player);
