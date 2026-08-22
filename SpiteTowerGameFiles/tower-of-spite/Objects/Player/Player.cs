@@ -120,7 +120,6 @@ public partial class Player : CharacterBody2D
 	private void KillPlayer()
 	{
 		EmitSignalPlayerDied();
-		GD.Print("Player Killed");
 		this.QueueFree();
 	}
 }
