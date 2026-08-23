@@ -8,11 +8,13 @@ public partial class Testing : Node
 	[Export] public PackedScene EyeScene;
 	[Export] public PackedScene SawScene;
 	[Export] public PackedScene GhostCloneScene;
+	[Export] public PackedScene FloodScene;
 	
 	private Player player;
 	private LaserEye eye;
 	private SawMain saw;
 	private GhostClone clone;
+	private Flood flood;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -49,8 +51,16 @@ public partial class Testing : Node
 		clone.SetTarget(player);
 	}
 
+	public void OnFloodTestingPressed()
+	{
+		flood = FloodScene.Instantiate<Flood>();
+		AddChild(flood);
+		flood.Position = new Vector2(0, 300);
+	}
+
 	public void OnPlayerDied()
 	{
+		flood.QueueFree();
 		CallDeferred(MethodName.SpawnPlayer);
 	}
 	
