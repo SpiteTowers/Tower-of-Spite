@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class GhostClone : Area2D
+public partial class GhostClone : Area2D,  IPlayerTargeter
 {
 	private struct PositionSample
 	{

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmfkcmhnhib54"
-path="res://.godot/imported/tileset.png-1f989c1afa1a8d68ddfde312efe3a258.ctex"
+uid="uid://g6pryqjqe0dn"
+path="res://.godot/imported/FloodPipe.png-bd199530b53b6a319d34421e6ecabef9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlaceholderSprites/Tilemap/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-1f989c1afa1a8d68ddfde312efe3a258.ctex"]
+source_file="res://Assets/Hazard/FloodPipe.png"
+dest_files=["res://.godot/imported/FloodPipe.png-bd199530b53b6a319d34421e6ecabef9.ctex"]
 
 [params]
 

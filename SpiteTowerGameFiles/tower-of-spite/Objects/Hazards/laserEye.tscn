@@ -1,18 +1,11 @@
 [gd_scene format=3 uid="uid://b6yqe0ulbaj4d"]
 
-[ext_resource type="Script" path="res://Objects/Hazards/LaserEye.cs" id="1_0klxb"]
 [ext_resource type="Texture2D" uid="uid://dpnbajno7htws" path="res://Assets/PlaceholderSprites/Hazards/Dashblade.png" id="2_2e1wn"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2dgnj"]
 b = Vector2(0, 54)
 
-[node name="LaserEye" type="Node2D" unique_id=1236575398 node_paths=PackedStringArray("Target")]
-script = ExtResource("1_0klxb")
-Target = NodePath("TestTarget")
-RayLength = null
-DefaultShotTimer = null
-DefaultShotDelay = null
-DefaultRecharge = null
+[node name="LaserEye" type="Node2D" unique_id=1236575398]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=170164796]
 texture = ExtResource("2_2e1wn")

@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class SawMain : Node2D
+public partial class SawMain : Node2D, INeedsTrack
 {
 	[Export] public Texture2D StartTexture;
 	[Export] public Texture2D MiddleTexture;
 	[Export] public Texture2D EndTexture;
 	
-	private float _trackLength;
+	public float _trackLength { get; set; }
 	private float _distance;
 	private float _direction = 1.0f;
 	private const int PieceSize = 32;
@@ -53,4 +53,6 @@ public partial class SawMain : Node2D
 		Saw saw = GetNode<Saw>("Saw");
 		saw.Initialize(_trackLength, _distance, _direction);
 	}
+
+	
 }

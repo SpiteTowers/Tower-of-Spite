@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dhmpljbucu2b0" path="res://Objects/Hazards/Saw/Saw.cs" id="1_01ytj"]
 [ext_resource type="Script" uid="uid://bu0jpbm67d3m1" path="res://Objects/Hazards/Saw/SawMain.cs" id="1_njwai"]
-[ext_resource type="Texture2D" uid="uid://b2gp5rfaidn7u" path="res://Assets/PlaceholderSprites/Hazards/Sawblade.png" id="2_jefev"]
-[ext_resource type="Texture2D" uid="uid://bnqccm7fvxg2s" path="res://Assets/PlaceholderSprites/Hazards (2)/SawTrack.png" id="3_01ytj"]
-[ext_resource type="Texture2D" uid="uid://c5pfgej3bi1n4" path="res://Assets/PlaceholderSprites/Hazards/SawTrackStart.png" id="3_4vb7s"]
-[ext_resource type="Texture2D" uid="uid://b8dxnbrcr5j1v" path="res://Assets/PlaceholderSprites/Hazards (2)/SawTrackEnd.png" id="4_jefev"]
+[ext_resource type="Texture2D" uid="uid://cwy06nrd8jrbk" path="res://Assets/Hazard/Track1.png" id="2_ycews"]
+[ext_resource type="Texture2D" uid="uid://bol18nhrk4xb3" path="res://Assets/Hazard/Track2.png" id="3_ebaf7"]
+[ext_resource type="Texture2D" uid="uid://bsxyhs5u2py3j" path="res://Assets/Hazard/Track3.png" id="4_5bj1w"]
+[ext_resource type="Texture2D" uid="uid://bhnoce1lq8b2e" path="res://Assets/Hazard/Sawblade.png" id="6_mru64"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2dgnj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jefev")
+"texture": ExtResource("6_mru64")
 }],
 "loop": 1,
 "name": &"default",
@@ -19,12 +19,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2dgnj"]
+radius = 10.049875
 
 [node name="SawTrack" type="Node2D" unique_id=1653950205]
 script = ExtResource("1_njwai")
-StartTexture = ExtResource("3_4vb7s")
-MiddleTexture = ExtResource("3_01ytj")
-EndTexture = ExtResource("4_jefev")
+StartTexture = ExtResource("2_ycews")
+MiddleTexture = ExtResource("3_ebaf7")
+EndTexture = ExtResource("4_5bj1w")
 
 [node name="Track" type="Node2D" parent="." unique_id=1058067241]
 

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://j3nub1s0gsep"]
+
+[ext_resource type="Script" uid="uid://bebkhhaky8uq8" path="res://Game/Game.cs" id="1_vrr3t"]
+[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/Saw/saw.tscn" id="2_ghvq8"]
+[ext_resource type="PackedScene" uid="uid://77umhlqwlx0f" path="res://Rooms/level_generator.tscn" id="2_iv3md"]
+[ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/LaserEye/laserEye.tscn" id="3_fuqhk"]
+[ext_resource type="PackedScene" uid="uid://d063nncv1i113" path="res://Objects/Hazards/Flood/Flood.tscn" id="4_oscxy"]
+[ext_resource type="PackedScene" uid="uid://upfagmvmrv53" path="res://Objects/Hazards/GhostClone/GhostClone.tscn" id="5_eqev2"]
+[ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="7_fuqhk"]
+
+[node name="Game" type="Node2D" unique_id=809076330]
+script = ExtResource("1_vrr3t")
+_bgWallEnemies = Array[PackedScene]([ExtResource("2_ghvq8")])
+_wallEnemies = Array[PackedScene]([ExtResource("3_fuqhk")])
+_ceilingEnemies = Array[PackedScene]([ExtResource("3_fuqhk")])
+_floorEnemies = Array[PackedScene]([ExtResource("3_fuqhk")])
+_constantEnemies = Array[PackedScene]([ExtResource("4_oscxy"), ExtResource("5_eqev2")])
+_roomNumber = 10
+
+[node name="Player" parent="." unique_id=550149213 instance=ExtResource("7_fuqhk")]
+position = Vector2(576, 512)
+
+[node name="Level Generator" parent="." unique_id=1288919104 instance=ExtResource("2_iv3md")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1293436903]
+position = Vector2(576, 328)
