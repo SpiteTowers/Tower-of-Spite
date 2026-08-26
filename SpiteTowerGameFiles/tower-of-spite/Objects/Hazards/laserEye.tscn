@@ -20,6 +20,8 @@ position = Vector2(185, 0)
 [node name="DebugLine" type="Line2D" parent="." unique_id=953922045]
 
 [node name="LaserCollision" type="Area2D" parent="." unique_id=966199953]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserCollision" unique_id=1018144991]
 shape = SubResource("SegmentShape2D_2dgnj")

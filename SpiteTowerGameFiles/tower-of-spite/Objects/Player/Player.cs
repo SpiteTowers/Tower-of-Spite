@@ -20,6 +20,7 @@ public partial class Player : CharacterBody2D
 	private const float Speed = 300.0f;
 	private const float JumpVelocity = -400.0f;
 	private bool _isOnFloor;
+	private bool _isDead = false;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -119,6 +120,11 @@ public partial class Player : CharacterBody2D
 
 	private void KillPlayer()
 	{
+		if (_isDead)
+			return;
+
+		_isDead = true;
+
 		EmitSignalPlayerDied();
 	}
 	public void DisablePlayer()
@@ -145,5 +151,7 @@ public partial class Player : CharacterBody2D
 		Visible = true;
 		SetPhysicsProcess(true);
 		SetProcess(true);
+		
+		_isDead = false;
 	}
 }

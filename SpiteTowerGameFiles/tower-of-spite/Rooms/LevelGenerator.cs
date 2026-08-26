@@ -193,4 +193,8 @@ public partial class LevelGenerator : Node2D
 		_spawnedObjects.Clear();
 		Rooms = null;
 	}
+	public void PrintSpawnedCount()
+	{
+		GD.Print("Spawned objects: ", _spawnedObjects.Count);
+	}
 }
