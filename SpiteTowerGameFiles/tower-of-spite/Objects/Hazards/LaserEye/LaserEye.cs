@@ -1,160 +1,192 @@
 using Godot;
 using System;
 
-public partial class LaserEye : Node2D
+public partial class LaserEye : Node2D, IPlayerTargeter
 {
-	[Export] public Node2D Target;
-	[Export] public float RayLength = 250f;
-	
-	[Export] public float DefaultShotTimer = 3f; // in seconds; The default time the Laser Eye waits before shooting at the player
-	private float ShotTimer = 3f; // in seconds;
-	[Export] public float DefaultShotDelay = 0.5f; // in seconds; The time it takes to wait before shooting at the player
-	private float ShotDelay = 0.1f; // in seconds;
-	[Export] public float DefaultRecharge = 0.3f;
-	private float RechargeTimer = 0.3f;
+    [Export] public Node2D Target;
+    [Export] public float RayLength = 5000f;
+    
+    [Export] public float DefaultShotTimer = 3f; // in seconds; The default time the Laser Eye waits before shooting at the player
+    private float _shotTimer = 3f; // in seconds;
+    [Export] public float DefaultShotDelay = 0.5f; // in seconds; The time it takes to wait before shooting at the player
+    private float _shotDelay = 0.1f; // in seconds;
+    [Export] public float DefaultRecharge = 0.3f;
+    private float _rechargeTimer = 0.3f;
 
-	private Area2D LaserCollision;
-	private CollisionShape2D CollisionShape;
-	private SegmentShape2D LaserShape;
-	private RayCast2D RayCast;
-	private Timer Timer;
-	private float CastAngle = 0;
-	
-	private bool IsTracking = true;
-	private bool IsCharging = false;
-	private bool IsShooting = false;
+    private Area2D _laserCollision;
+    private CollisionShape2D _collisionShape;
+    private RayCast2D _rayCast;
+    private Timer _timer;
+    private float _castAngle = 0;
+    
+    private bool _isTracking = true;
+    private bool _isCharging = false;
+    private bool _isShooting = false;
 
-	private Line2D DebugLine;
+    private Line2D _debugLine;
 
 
-	public void SetTarget(Node2D target)
-	{
-		Target = target;
-	}
+    public void SetTarget(Node2D target)
+    {
+       Target = target;
+    }
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		RayCast = GetNode<RayCast2D>("RayCast2D");
-		RayCast.SetTargetPosition(Vector2.Down * RayLength);
-		
-		DebugLine = GetNode<Line2D>("DebugLine");
-		DebugLine.Show();
-		
-		LaserCollision = GetNode<Area2D>("LaserCollision");
-		CollisionShape = GetNode<CollisionShape2D>("LaserCollision/CollisionShape2D");
-		LaserShape = CollisionShape.Shape as SegmentShape2D;
-	}
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+       _rayCast = GetNode<RayCast2D>("RayCast2D");
+       _rayCast.SetTargetPosition(Vector2.Down * RayLength);
+       _rayCast.CollisionMask = 1;
+       
+       _debugLine = GetNode<Line2D>("DebugLine");
+       _debugLine.Show();
+       
+       _laserCollision = GetNode<Area2D>("LaserCollision");
+       _collisionShape = GetNode<CollisionShape2D>("LaserCollision/CollisionShape2D");
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		
-		// Null Target Protection
-		if (Target == null)
-		{
-			RayCast.TargetPosition = Vector2.Down * RayLength;
-			IsTracking = false;
-		}
-		else
-		{
-			IsTracking = true;
-		}
-		
+       _laserCollision.Monitoring = true;
+       _laserCollision.Monitorable = true;
 
-		if (IsTracking && !IsCharging)
-		{
-			_aim();
-			_debugUpdate();
+       _laserCollision.SetCollisionLayerValue(3, false);
+       _laserCollision.SetCollisionMaskValue(4, true);
+    }
 
-			ShotTimer -= (float)delta;
-			if (ShotTimer <= 0)
-			{
-				IsCharging = true;
-			}
-		}
-		else if (IsCharging)
-		{
-			if (!IsShooting)
-			{
-				IsShooting = true;
-				ShotDelay = DefaultShotDelay;
-				RechargeTimer = DefaultRecharge;
-			}
-			Shoot(delta);
-		}
-		else
-		{
-			ShotTimer = DefaultShotTimer;
-		}
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _PhysicsProcess(double delta)
+    {
+       
+       // Null Target Protection
+       if (Target == null)
+       {
+          _rayCast.TargetPosition = Vector2.Down * RayLength;
+          _isTracking = false;
+       }
+       else
+       {
+          _isTracking = true;
+       }
+       
 
-		LaserShape.A = Vector2.Zero;
+       if (_isTracking && !_isCharging)
+       {
+          _aim();
+          
+          _shotTimer -= (float)delta;
+          if (_shotTimer <= 0)
+          {
+             _isCharging = true;
+          }
+       }
+       else if (_isCharging)
+       {
+          if (!_isShooting)
+          {
+             _isShooting = true;
+             _shotDelay = DefaultShotDelay;
+             _rechargeTimer = DefaultRecharge;
+          }
+          Shoot(delta);
+       }
+       else
+       {
+          _shotTimer = DefaultShotTimer;
+       }
 
-		if (RayCast.IsColliding())
-		{
-			LaserShape.B = LaserCollision.ToLocal(RayCast.GetCollisionPoint());
-		}
-		else
-		{
-			LaserShape.B = RayCast.TargetPosition;
-		}
-	}
+       Vector2 start = _rayCast.GlobalPosition;
 
-	public void Shoot(double delta)
-	{
-		DebugLine.DefaultColor = Colors.Orange;
-		
-		if (ShotDelay >= 0)
-		{
-			ShotDelay -= (float)delta;
-		}
-		else
-		{
-			LaserCollision.SetCollisionLayerValue(3, true);
-			DebugLine.DefaultColor = Colors.LimeGreen;
-		
-			if (RechargeTimer >= 0)
-			{
-				RechargeTimer -= (float)delta;
-			}
-			else
-			{
-				LaserCollision.SetCollisionLayerValue(3, false);
-				IsCharging = false;
-				ShotTimer = DefaultShotTimer;
-				IsShooting = false;
-			}
-		}
-		
-		// GD.Print(ShotDelay);
-		// GD.Print(RechargeTimer);
-	}
+       Vector2 end;
 
-	private void _aim()
-	{
-		// RayCast.TargetPosition = RayCast.TargetPosition.DirectionTo((Target.Position - RayCast.GlobalPosition) * RayLength);
-		RayCast.TargetPosition = Target.Position - RayCast.GlobalPosition;
-		RayCast.TargetPosition *= RayLength;
-		
-		// TODO: Make main raycast go till it hits ground/wall
-		if (RayCast.IsColliding())
-		{
-			// GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
-			// DebugLine.SetDefaultColor(Colors.Purple);
-		}
-	}
+       if (_rayCast.IsColliding())
+       {
+          end = _rayCast.GetCollisionPoint();
+       }
+       else
+       {
+          end = _rayCast.ToGlobal(_rayCast.TargetPosition);
+       }
 
-	private void _debugUpdate()
-	{
-		DebugLine.Points = new Vector2[2] {RayCast.Position, RayCast.IsColliding() ? RayCast.GetCollisionPoint() - RayCast.GetGlobalPosition()  : RayCast.GetTargetPosition()};
-		
-		if (RayCast.IsColliding())
-		{
-			DebugLine.SetDefaultColor(Colors.White);
-		}
-		else
-		{
-			DebugLine.SetDefaultColor(Colors.Gray);
-		}
-	}
+       Vector2 direction = start.DirectionTo(end);
+       float length = start.DistanceTo(end);
+
+       _laserCollision.GlobalPosition = start;
+       _laserCollision.GlobalRotation = direction.Angle();
+
+       _collisionShape.Position = Vector2.Zero;
+       _collisionShape.Rotation = 0;
+       _collisionShape.Scale = Vector2.One;
+
+       SegmentShape2D newShape = new SegmentShape2D();
+       newShape.A = Vector2.Zero;
+       newShape.B = new Vector2(length, 0);
+
+       _collisionShape.Shape = newShape;
+
+       _debugLine.Points = new Vector2[]
+       {
+          _debugLine.ToLocal(start),
+          _debugLine.ToLocal(end)
+       };
+
+       if (_isShooting)
+       {
+          if (_shotDelay > 0)
+          {
+             _debugLine.DefaultColor = Colors.Orange;
+          }
+          else
+          {
+             _debugLine.DefaultColor = Colors.LimeGreen;
+          }
+       }
+       else
+       {
+          _debugLine.DefaultColor = _rayCast.IsColliding()
+             ? Colors.White
+             : Colors.Gray;
+       }
+    }
+
+    public void Shoot(double delta)
+    {
+       if (_shotDelay >= 0)
+       {
+          _shotDelay -= (float)delta;
+       }
+       else
+       {
+          _laserCollision.SetCollisionLayerValue(3, true);
+       
+          if (_rechargeTimer >= 0)
+          {
+             _rechargeTimer -= (float)delta;
+          }
+          else
+          {
+             _laserCollision.SetCollisionLayerValue(3, false);
+             _isCharging = false;
+             _shotTimer = DefaultShotTimer;
+             _isShooting = false;
+          }
+       }
+    }
+
+    private void _aim()
+    {
+       if (Target == null)
+          return;
+
+       Vector2 direction =
+          _rayCast.GlobalPosition.DirectionTo(Target.GlobalPosition);
+
+       _rayCast.TargetPosition = direction * RayLength;
+
+       _rayCast.ForceRaycastUpdate();
+       
+       // TODO: Make main raycast go till it hits ground/wall
+       if (_rayCast.IsColliding())
+       {
+          // GD.Print(RayCast.GetCollider(), RayCast.GetCollisionPoint());
+          // DebugLine.SetDefaultColor(Colors.Purple);
+       }
+    }
 }
