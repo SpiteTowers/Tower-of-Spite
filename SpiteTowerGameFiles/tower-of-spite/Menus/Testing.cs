@@ -75,6 +75,11 @@ public partial class Testing : Node
 	
 	private void SpawnPlayer()
 	{
+		if (_player != null)
+		{
+			_player.QueueFree();
+			_player = null;
+		}
 		_player = PlayerScene.Instantiate<Player>();
 		AddChild(_player);
 		_player.Position = new Vector2(700, 300);
