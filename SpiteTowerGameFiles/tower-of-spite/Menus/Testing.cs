@@ -10,12 +10,14 @@ public partial class Testing : Node
 	[Export] public PackedScene GhostCloneScene;
 	[Export] public PackedScene FloodScene;
 	[Export] public PackedScene DoomsdayScene;
+	[Export] public PackedScene ZombieScene;
 	
 	private Player _player;
 	private LaserEye _eye;
 	private SawMain _saw;
 	private GhostClone _clone;
 	private Flood _flood;
+	private Zombie _zombie;
 	private DoomsdayEye _doomsday;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -60,11 +62,22 @@ public partial class Testing : Node
 		_flood.Position = new Vector2(0, 300);
 	}
 
+
 	public void OnDoomsdayTestingPressed()
 	{
 		_doomsday = DoomsdayScene.Instantiate<DoomsdayEye>();
 		AddChild(_doomsday);
 		_doomsday.SetTarget(_player);
+	}
+
+	public void OnZombieTestingPressed()
+	{
+		_zombie = ZombieScene.Instantiate<Zombie>();
+		AddChild(_zombie);
+		_zombie.Position = new Vector2(600, 300);
+		Zombie zombie2 = ZombieScene.Instantiate<Zombie>();
+		AddChild(zombie2);
+		zombie2.Position =  new Vector2(650, 450);
 	}
 	
 	private void OnLevelTestingPressed()
