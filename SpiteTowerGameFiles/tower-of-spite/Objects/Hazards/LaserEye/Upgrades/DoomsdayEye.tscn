@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b8lwai67qrhbt"]
+
+[ext_resource type="Script" uid="uid://b5aure6lvoru4" path="res://Objects/Hazards/LaserEye/Upgrades/DoomsdayEye.cs" id="1_f7n6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un2l8"]
+size = Vector2(384, 656)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
+size = Vector2(384, 656)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1vgu"]
+size = Vector2(384, 656)
+
+[node name="DoomsdayEye" type="Node2D" unique_id=427058645]
+script = ExtResource("1_f7n6m")
+StayOnDuration = 0.5
+
+[node name="Left" type="Area2D" parent="." unique_id=2125759957]
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Left" unique_id=716677016]
+position = Vector2(192, 328)
+shape = SubResource("RectangleShape2D_un2l8")
+
+[node name="LeftWarning" type="ColorRect" parent="Left" unique_id=1512900768]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 404.0
+offset_bottom = 656.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 0, 0, 1)
+
+[node name="Middle" type="Area2D" parent="." unique_id=580280641]
+
+[node name="MiddleCollision" type="CollisionShape2D" parent="Middle" unique_id=1632581296]
+position = Vector2(576, 328)
+shape = SubResource("RectangleShape2D_2dgnj")
+
+[node name="MiddleWarning" type="ColorRect" parent="Middle" unique_id=1960029336]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 364.0
+offset_right = 788.0
+offset_bottom = 656.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 0, 0, 1)
+
+[node name="Right" type="Area2D" parent="." unique_id=1812852141]
+
+[node name="RightCollision" type="CollisionShape2D" parent="Right" unique_id=44387499]
+position = Vector2(960, 328)
+shape = SubResource("RectangleShape2D_w1vgu")
+
+[node name="RightWarning" type="ColorRect" parent="Right" unique_id=1437230748]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 748.0
+offset_right = 1152.0
+offset_bottom = 656.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 0, 0, 1)

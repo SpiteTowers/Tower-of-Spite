@@ -17,8 +17,8 @@ public partial class Testing : Node
 	private SawMain _saw;
 	private GhostClone _clone;
 	private Flood _flood;
-	//private DoomsdayEye _doomsday;
 	private Zombie _zombie;
+	private DoomsdayEye _doomsday;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -62,12 +62,13 @@ public partial class Testing : Node
 		_flood.Position = new Vector2(0, 300);
 	}
 
-	/*public void OnDoomsdayTestingPressed()
+
+	public void OnDoomsdayTestingPressed()
 	{
 		_doomsday = DoomsdayScene.Instantiate<DoomsdayEye>();
 		AddChild(_doomsday);
 		_doomsday.SetTarget(_player);
-	}*/
+	}
 
 	public void OnZombieTestingPressed()
 	{
@@ -96,6 +97,11 @@ public partial class Testing : Node
 	
 	private void SpawnPlayer()
 	{
+		if (_player != null)
+		{
+			_player.QueueFree();
+			_player = null;
+		}
 		_player = PlayerScene.Instantiate<Player>();
 		AddChild(_player);
 		_player.Position = new Vector2(700, 300);
