@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b23gkf1xiaydo"]
 
 [ext_resource type="Script" uid="uid://bcvmiejdve0b" path="res://Menus/Shop/Shop.cs" id="1_uwoyl"]
-[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/Saw/saw.tscn" id="2_ys21r"]
 [ext_resource type="Texture2D" uid="uid://suc2r1ummnnu" path="res://Assets/Menu/ShopOpen.png" id="3_bt1c0"]
 [ext_resource type="PackedScene" uid="uid://mkr5awi6e7fi" path="res://Menus/Cards/HazardCard.tscn" id="4_1e04e"]
 [ext_resource type="PackedScene" uid="uid://bsngku5ghd0ua" path="res://Menus/Cards/AbilityCard.tscn" id="5_ox4if"]
@@ -30,7 +29,6 @@ corner_radius_bottom_left = 13
 
 [node name="Shop" type="Node2D" unique_id=18966265]
 script = ExtResource("1_uwoyl")
-TestHazard = ExtResource("2_ys21r")
 
 [node name="ShopOpen" type="Sprite2D" parent="." unique_id=656697306]
 position = Vector2(576, 328)
@@ -113,3 +111,4 @@ text = "Exit Shop"
 [connection signal="pressed" from="HazardCards/HazardCard" to="." method="OnHazardCardPressed"]
 [connection signal="pressed" from="HazardCards/HazardCard2" to="." method="OnHazardCardPressed2"]
 [connection signal="pressed" from="HazardCards/HazardCard3" to="." method="OnHazardCardPressed3"]
+[connection signal="pressed" from="Button" to="." method="OnExitShopPressed"]
