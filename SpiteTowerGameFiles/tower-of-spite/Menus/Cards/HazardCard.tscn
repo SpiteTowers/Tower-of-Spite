@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://mkr5awi6e7fi"]
+
+[ext_resource type="Texture2D" uid="uid://bel1n3twhjmn0" path="res://Assets/Menu/HazardCard.png" id="1_blye4"]
+[ext_resource type="Texture2D" uid="uid://bj5vxh0na60nx" path="res://Assets/ShopAssets/SawbladeShop.png" id="2_blye4"]
+
+[node name="HazardCard" type="Button" unique_id=1905658862]
+offset_left = -96.0
+offset_top = -174.0
+offset_right = 97.0
+offset_bottom = 174.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=580902584]
+layout_mode = 0
+offset_right = 197.0
+offset_bottom = 348.0
+texture = ExtResource("1_blye4")
+stretch_mode = 4
+
+[node name="BoxContainer" type="MarginContainer" parent="." unique_id=466546336]
+custom_maximum_size = Vector2(-1, 328)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 186.0
+offset_bottom = 338.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer" unique_id=1121126889]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BoxContainer/VBoxContainer" unique_id=1548371709]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Sawblade"
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="BoxContainer/VBoxContainer" unique_id=1887742148]
+custom_maximum_size = Vector2(-1, 80)
+layout_mode = 2
+texture = ExtResource("2_blye4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Desc" type="Label" parent="BoxContainer/VBoxContainer" unique_id=798740032]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Allows you to Dash in any direction by pressing [Z]"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Income" type="Label" parent="BoxContainer/VBoxContainer" unique_id=1198913648]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "200"
+horizontal_alignment = 1

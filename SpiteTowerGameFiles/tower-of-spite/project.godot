@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tower of Spite"
-run/main_scene="uid://cntv605ru4l48"
+run/main_scene="uid://b23gkf1xiaydo"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
 [display]

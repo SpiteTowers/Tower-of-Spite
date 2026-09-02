@@ -33,6 +33,7 @@ public partial class LevelGenerator : Node2D
 		Rooms[0] = RoomOptions[_random.Next(RoomOptions.Length)].Instantiate<Room>();
 		GetParent().AddChild(Rooms[0]);
 		_spawnedObjects.Add(Rooms[0]);
+		
 		Rooms[0].Position = Vector2.Zero;
 		for (int i = 1; i < numRooms; i++)
 		{

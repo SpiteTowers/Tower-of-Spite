@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ba4676677xurh"]
 
 [ext_resource type="Script" uid="uid://c7ru71dd0awv6" path="res://Objects/Hazards/LaserEye/LaserEye.cs" id="1_0klxb"]
-[ext_resource type="Texture2D" uid="uid://bkwhta6b3tyg6" path="res://Assets/Hazard/MechanicalEye.png" id="2_xrxrf"]
+[ext_resource type="Texture2D" uid="uid://bkwhta6b3tyg6" path="res://Assets/Hazard/LaserEye.png" id="2_xrxrf"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_2dgnj"]
 b = Vector2(0, 54)
