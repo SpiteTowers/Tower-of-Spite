@@ -9,12 +9,16 @@ public partial class Testing : Node
 	[Export] public PackedScene SawScene;
 	[Export] public PackedScene GhostCloneScene;
 	[Export] public PackedScene FloodScene;
+	[Export] public PackedScene DoomsdayScene;
+	[Export] public PackedScene ZombieScene;
 	
-	private Player player;
-	private LaserEye eye;
-	private SawMain saw;
-	private GhostClone clone;
-	private Flood flood;
+	private Player _player;
+	private LaserEye _eye;
+	private SawMain _saw;
+	private GhostClone _clone;
+	private Flood _flood;
+	private Zombie _zombie;
+	private DoomsdayEye _doomsday;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,55 +33,87 @@ public partial class Testing : Node
 
 	public void OnEyeTestingPressed()
 	{
-		eye = EyeScene.Instantiate<LaserEye>();
-		AddChild(eye);
-		eye.Position = new Vector2(500, 300);
-		eye.SetTarget(player);
+		_eye = EyeScene.Instantiate<LaserEye>();
+		AddChild(_eye);
+		_eye.Position = new Vector2(500, 300);
+		_eye.SetTarget(_player);
 	}
 
 	public void OnSawTestingPressed()
 	{
-		saw = SawScene.Instantiate<SawMain>();
-		AddChild(saw);
-		saw.Position = new Vector2(50, 175);
-		saw.Initialize(150);
+		_saw = SawScene.Instantiate<SawMain>();
+		AddChild(_saw);
+		_saw.Position = new Vector2(50, 175);
+		_saw.Initialize(150);
 	}
 
 	public void OnGhostCloneTestingPressed()
 	{
-		clone = GhostCloneScene.Instantiate<GhostClone>();
-		AddChild(clone);
-		clone.Position = new Vector2(500, 300);
-		clone.SetTarget(player);
+		_clone = GhostCloneScene.Instantiate<GhostClone>();
+		AddChild(_clone);
+		_clone.Position = new Vector2(500, 300);
+		_clone.SetTarget(_player);
 	}
 
 	public void OnFloodTestingPressed()
 	{
-		flood = FloodScene.Instantiate<Flood>();
-		AddChild(flood);
-		flood.Position = new Vector2(0, 300);
+		_flood = FloodScene.Instantiate<Flood>();
+		AddChild(_flood);
+		_flood.Position = new Vector2(0, 300);
+	}
+
+
+	public void OnDoomsdayTestingPressed()
+	{
+		_doomsday = DoomsdayScene.Instantiate<DoomsdayEye>();
+		AddChild(_doomsday);
+		_doomsday.SetTarget(_player);
+	}
+
+	public void OnZombieTestingPressed()
+	{
+		_zombie = ZombieScene.Instantiate<Zombie>();
+		AddChild(_zombie);
+		_zombie.Position = new Vector2(600, 300);
+		Zombie zombie2 = ZombieScene.Instantiate<Zombie>();
+		AddChild(zombie2);
+		zombie2.Position =  new Vector2(650, 450);
+	}
+	
+	private void OnLevelTestingPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Game/Game.tscn");
 	}
 
 	public void OnPlayerDied()
 	{
-		flood.QueueFree();
+		if (_flood != null)
+		{
+			_flood.QueueFree();
+		}
+
 		CallDeferred(MethodName.SpawnPlayer);
 	}
 	
 	private void SpawnPlayer()
 	{
-		player = PlayerScene.Instantiate<Player>();
-		AddChild(player);
-		player.Position = new Vector2(700, 300);
-		if (eye != null)
+		if (_player != null)
 		{
-			eye.SetTarget(player);
+			_player.QueueFree();
+			_player = null;
+		}
+		_player = PlayerScene.Instantiate<Player>();
+		AddChild(_player);
+		_player.Position = new Vector2(700, 300);
+		if (_eye != null)
+		{
+			_eye.SetTarget(_player);
 		}
 
-		if (clone != null)
+		if (_clone != null)
 		{
-			clone.SetTarget(player);
+			_clone.SetTarget(_player);
 		}
-		player.PlayerDied += OnPlayerDied;
+		_player.PlayerDied += OnPlayerDied;
 	}
 }

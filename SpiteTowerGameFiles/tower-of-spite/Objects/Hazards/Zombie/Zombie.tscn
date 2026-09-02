@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://duuah5rs13ib8"]
+
+[ext_resource type="Script" uid="uid://b4ntqwn43k6wu" path="res://Objects/Hazards/Zombie/Zombie.cs" id="1_4i6ea"]
+[ext_resource type="Texture2D" uid="uid://eqav6dsiuouv" path="res://Assets/PlaceholderSprites/Hazards/Ghost Clone.png" id="2_puc6t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
+size = Vector2(20, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2dgnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_puc6t")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_un2l8"]
+
+[node name="Zombie" type="CharacterBody2D" unique_id=798813989]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_4i6ea")
+Speed = 60.0
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=861203720]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2dgnj")
+
+[node name="WallCheck" type="RayCast2D" parent="." unique_id=1551384836]
+target_position = Vector2(12, 0)
+collision_mask = 3
+
+[node name="FloorCheck" type="RayCast2D" parent="." unique_id=1669527319]
+target_position = Vector2(10, 30)
+collision_mask = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2039335495]
+sprite_frames = SubResource("SpriteFrames_2dgnj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1886153256]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D" unique_id=355295579]
+shape = SubResource("CapsuleShape2D_un2l8")

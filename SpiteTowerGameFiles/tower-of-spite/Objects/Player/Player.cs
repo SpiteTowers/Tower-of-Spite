@@ -11,63 +11,64 @@ public partial class Player : CharacterBody2D
 	[Export] public float DashTime = 0.15f;
 	[Export] public float DashDeceleration = 2500.0f;
 	
-	private float DropThroughTimer = 0.0f;
-	private float DropThroughTime = 0.15f;
-	private bool DroppingThrough = false;
-	private float DashTimer = 0.0f;
-	private bool CanDash = true;
-	private bool Dashing = false;
+	private float _dropThroughTimer = 0.0f;
+	private float _dropThroughTime = 0.15f;
+	private bool _droppingThrough = false;
+	private float _dashTimer = 0.0f;
+	private bool _canDash = true;
+	private bool _dashing = false;
 	private const float Speed = 300.0f;
 	private const float JumpVelocity = -400.0f;
-	private bool isOnFloor;
+	private bool _isOnFloor;
+	private bool _isDead = false;
 
 	public override void _PhysicsProcess(double delta)
 	{
-		isOnFloor = IsOnFloor();
+		_isOnFloor = IsOnFloor();
 		
 		// Resets Dash on floor
-		if (isOnFloor)
+		if (_isOnFloor)
 		{
-			CanDash = true;
+			_canDash = true;
 		}
 		
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
-		if (!isOnFloor)
+		if (!_isOnFloor)
 		{
 			velocity += GetGravity() * GravityScale * (float)delta;
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && isOnFloor)
+		if (Input.IsActionJustPressed("jump") && _isOnFloor)
 		{
 			velocity.Y = JumpVelocity;
 		}
 
 		// Drop through platforms
-		if (Input.IsActionPressed("move_down") && !Dashing)
+		if (Input.IsActionPressed("move_down") && !_dashing)
 		{
-			DroppingThrough = true;
-			DropThroughTimer = DropThroughTime;
+			_droppingThrough = true;
+			_dropThroughTimer = _dropThroughTime;
 			
 			SetCollisionMaskValue(2, false);
 		}
 		
 		// Handles falling through platforms
-		if (DroppingThrough)
+		if (_droppingThrough)
 		{
-			DropThroughTimer -= (float)delta;
+			_dropThroughTimer -= (float)delta;
 			
-			if (DropThroughTimer <= 0)
+			if (_dropThroughTimer <= 0)
 			{
-				DroppingThrough = false;
+				_droppingThrough = false;
 				SetCollisionMaskValue(2, true);
 			}
 		}
 		
 		// Handle Dash
-		if (Input.IsActionJustPressed("ability") && CanDash && !Dashing)
+		if (Input.IsActionJustPressed("ability") && _canDash && !_dashing)
 		{
 			Vector2 dashDirection = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 			if (dashDirection == Vector2.Zero)
@@ -79,19 +80,19 @@ public partial class Player : CharacterBody2D
 			
 			velocity = dashDirection * DashSpeed;
 			
-			Dashing = true;
-			CanDash = false;
-			DashTimer = DashTime;
+			_dashing = true;
+			_canDash = false;
+			_dashTimer = DashTime;
 		}
 		
 		// Deals with dash timer and reseting dash
-		if (Dashing)
+		if (_dashing)
 		{
-			DashTimer -= (float)delta;
+			_dashTimer -= (float)delta;
 
-			if (DashTimer <= 0)
+			if (_dashTimer <= 0)
 			{
-				Dashing = false;
+				_dashing = false;
 			}
 		}
 		else
@@ -119,7 +120,38 @@ public partial class Player : CharacterBody2D
 
 	private void KillPlayer()
 	{
+		if (_isDead)
+			return;
+
+		_isDead = true;
+
 		EmitSignalPlayerDied();
-		this.QueueFree();
+	}
+	public void DisablePlayer()
+	{
+		Visible = false;
+		SetPhysicsProcess(false);
+		SetProcess(false);
+
+		SetCollisionLayerValue(4, false);
+		SetCollisionMaskValue(1, false);
+		SetCollisionMaskValue(2, false);
+		SetCollisionMaskValue(3, false);
+	}
+
+	public void EnablePlayer(Vector2 spawnPosition)
+	{
+		GlobalPosition = spawnPosition;
+
+		SetCollisionLayerValue(4, true);
+		SetCollisionMaskValue(1, true);
+		SetCollisionMaskValue(2, true);
+		SetCollisionMaskValue(3, true);
+
+		Visible = true;
+		SetPhysicsProcess(true);
+		SetProcess(true);
+		
+		_isDead = false;
 	}
 }

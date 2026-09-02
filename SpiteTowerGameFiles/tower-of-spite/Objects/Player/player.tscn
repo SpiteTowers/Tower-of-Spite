@@ -16,8 +16,6 @@ script = ExtResource("1_yw17q")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=950666374]
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=935340788]
 texture_filter = 1
 texture = ExtResource("2_yw17q")

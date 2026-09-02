@@ -1,37 +1,10 @@
 [gd_scene format=3 uid="uid://77umhlqwlx0f"]
 
-[ext_resource type="Script" uid="uid://bh7mjied82op1" path="res://Objects/Player/Player.cs" id="1_ciddx"]
-[ext_resource type="Texture2D" uid="uid://eqav6dsiuouv" path="res://Assets/PlaceholderSprites/Hazards/Ghost Clone.png" id="2_1mgij"]
+[ext_resource type="Script" uid="uid://bu8h46jhncl1p" path="res://Rooms/LevelGenerator.cs" id="1_bxie3"]
+[ext_resource type="PackedScene" uid="uid://cqxiepi6r4mb3" path="res://Rooms/room_template.tscn" id="2_pfgc2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
-size = Vector2(24, 57)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_utjab"]
-radius = 6.519202
-
-[node name="Player" type="CharacterBody2D" unique_id=1288919104]
-collision_layer = 8
-collision_mask = 7
-script = ExtResource("1_ciddx")
+[node name="Level Generator" type="Node2D" unique_id=841867252]
+script = ExtResource("1_bxie3")
+RoomOptions = Array[PackedScene]([ExtResource("2_pfgc2")])
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=950666374]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=935340788]
-texture_filter = 1
-texture = ExtResource("2_1mgij")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1142243847]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_6knbt")
-
-[node name="Hurtbox" type="Area2D" parent="." unique_id=1708840807]
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1173082340]
-position = Vector2(0.5, 0.5)
-shape = SubResource("CircleShape2D_utjab")
-
-[connection signal="area_entered" from="Hurtbox" to="." method="OnHurtboxAreaEntered"]
