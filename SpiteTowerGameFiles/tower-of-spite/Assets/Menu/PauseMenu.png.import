@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4u766muvxjby"
-path="res://.godot/imported/PauseMenu.png-6ae079757d77b300a553f5d41e5c45a2.ctex"
+path="res://.godot/imported/PauseMenu.png-acfaebd4701a86dc64a1039730e2f1c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menus/PauseMenu.png"
-dest_files=["res://.godot/imported/PauseMenu.png-6ae079757d77b300a553f5d41e5c45a2.ctex"]
+source_file="res://Assets/Menu/PauseMenu.png"
+dest_files=["res://.godot/imported/PauseMenu.png-acfaebd4701a86dc64a1039730e2f1c9.ctex"]
 
 [params]
 
