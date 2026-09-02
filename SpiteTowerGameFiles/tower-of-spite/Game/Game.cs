@@ -3,8 +3,6 @@ using TowerofSpite.Objects.Player;
 
 public partial class Game : Node2D
 {
-	
-
 	private LevelGenerator _levelGenerator;
 	private Player _player;
 	private Camera2D _camera;
