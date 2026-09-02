@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b23gkf1xiaydo"]
+
+[ext_resource type="Script" uid="uid://bcvmiejdve0b" path="res://Menus/Shop/Shop.cs" id="1_uwoyl"]
+[ext_resource type="Texture2D" uid="uid://suc2r1ummnnu" path="res://Assets/Menu/ShopOpen.png" id="3_bt1c0"]
+[ext_resource type="PackedScene" uid="uid://mkr5awi6e7fi" path="res://Menus/Cards/HazardCard.tscn" id="4_1e04e"]
+[ext_resource type="PackedScene" uid="uid://bsngku5ghd0ua" path="res://Menus/Cards/AbilityCard.tscn" id="5_ox4if"]
+[ext_resource type="Texture2D" uid="uid://dp7mrjoosbk5h" path="res://Assets/Menu/ShopClosed.png" id="5_ys21r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un2l8"]
+bg_color = Color(0.47843137, 0.5294118, 0.48235294, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1vgu"]
+bg_color = Color(0.57046896, 0.6223593, 0.57437223, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vd4b3"]
+bg_color = Color(0.47843137, 0.5294118, 0.48235294, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[node name="Shop" type="Node2D" unique_id=18966265]
+script = ExtResource("1_uwoyl")
+
+[node name="ShopOpen" type="Sprite2D" parent="." unique_id=656697306]
+position = Vector2(576, 328)
+texture = ExtResource("3_bt1c0")
+
+[node name="PlayerGold" type="Label" parent="." unique_id=151234435]
+offset_left = 18.0
+offset_top = 395.0
+offset_right = 274.0
+offset_bottom = 438.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Player Gold:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbilityCards" type="Node" parent="." unique_id=1430038734]
+
+[node name="AbilityCard" parent="AbilityCards" unique_id=629271284 instance=ExtResource("5_ox4if")]
+offset_left = 325.0
+offset_top = 401.0
+offset_right = 555.0
+offset_bottom = 631.0
+
+[node name="AbilityCard2" parent="AbilityCards" unique_id=2122200975 instance=ExtResource("5_ox4if")]
+offset_left = 623.0
+offset_top = 400.0
+offset_right = 853.0
+offset_bottom = 630.0
+
+[node name="AbilityCard3" parent="AbilityCards" unique_id=1998559299 instance=ExtResource("5_ox4if")]
+offset_left = 901.0
+offset_top = 403.0
+offset_right = 1131.0
+offset_bottom = 633.0
+
+[node name="ShopClosed" type="Sprite2D" parent="." unique_id=627900700]
+visible = false
+z_index = 1
+position = Vector2(576, 328)
+texture = ExtResource("5_ys21r")
+
+[node name="HazardCards" type="Node" parent="." unique_id=309483787]
+
+[node name="HazardCard" parent="HazardCards" unique_id=1905658862 instance=ExtResource("4_1e04e")]
+z_index = 1
+offset_left = 55.0
+offset_top = 21.0
+offset_right = 252.0
+offset_bottom = 369.0
+
+[node name="HazardCard2" parent="HazardCards" unique_id=94767029 instance=ExtResource("4_1e04e")]
+z_index = 1
+offset_left = 351.0
+offset_top = 21.0
+offset_right = 548.0
+offset_bottom = 369.0
+
+[node name="HazardCard3" parent="HazardCards" unique_id=1801842491 instance=ExtResource("4_1e04e")]
+z_index = 1
+offset_left = 664.0
+offset_top = 20.0
+offset_right = 861.0
+offset_bottom = 368.0
+
+[node name="Button" type="Button" parent="." unique_id=243852772]
+offset_left = 924.0
+offset_top = 343.0
+offset_right = 1139.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(0.8217979, 0.7635222, 0.23649213, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_un2l8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_w1vgu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vd4b3")
+text = "Exit Shop"
+
+[connection signal="pressed" from="AbilityCards/AbilityCard" to="." method="OnAbilityCardPressed"]
+[connection signal="pressed" from="AbilityCards/AbilityCard2" to="." method="OnAbilityCardPressed2"]
+[connection signal="pressed" from="AbilityCards/AbilityCard3" to="." method="OnAbilityCardPressed3"]
+[connection signal="pressed" from="HazardCards/HazardCard" to="." method="OnHazardCardPressed"]
+[connection signal="pressed" from="HazardCards/HazardCard2" to="." method="OnHazardCardPressed2"]
+[connection signal="pressed" from="HazardCards/HazardCard3" to="." method="OnHazardCardPressed3"]
+[connection signal="pressed" from="Button" to="." method="OnExitShopPressed"]

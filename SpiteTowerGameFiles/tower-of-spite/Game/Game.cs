@@ -3,12 +3,7 @@ using TowerofSpite.Objects.Player;
 
 public partial class Game : Node2D
 {
-	[Export] PackedScene[] _bgWallEnemies;
-	[Export] PackedScene[] _wallEnemies;
-	[Export] PackedScene[] _ceilingEnemies;
-	[Export] PackedScene[] _floorEnemies;
-	[Export] PackedScene[] _constantEnemies;
-	[Export] int _roomNumber;
+	
 
 	private LevelGenerator _levelGenerator;
 	private Player _player;
@@ -42,28 +37,28 @@ public partial class Game : Node2D
 
 	private void BuildTower()
 	{
-		_levelGenerator.SpawnRooms(_roomNumber, _player);
+		_levelGenerator.SpawnRooms(GameData.RoomNumber, _player);
 	}
 
 	private void ActivateEnemies()
 	{
-		foreach (PackedScene enemy in _bgWallEnemies)
+		foreach (PackedScene enemy in GameData.BgWallEnemies)
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.BackgroundWall);
 		}
-		foreach (var enemy in _wallEnemies)
+		foreach (var enemy in GameData.WallEnemies)
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Wall);
 		}
-		foreach (var enemy in _ceilingEnemies)
+		foreach (var enemy in GameData.CeilingEnemies)
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Ceiling);
 		}
-		foreach (var enemy in _floorEnemies)
+		foreach (var enemy in GameData.FloorEnemies)
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Floor);
 		}
-		foreach (var enemy in _constantEnemies)
+		foreach (var enemy in GameData.ConstantEnemies)
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Constant);
 		}

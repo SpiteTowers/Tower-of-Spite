@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkwhta6b3tyg6"
-path="res://.godot/imported/MechanicalEye.png-e4d58506d4faf14e26ca3a810fabb7e2.ctex"
+uid="uid://dp7mrjoosbk5h"
+path="res://.godot/imported/ShopClosed.png-3c09ad3ef931426cae214337e48b5593.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hazard/MechanicalEye.png"
-dest_files=["res://.godot/imported/MechanicalEye.png-e4d58506d4faf14e26ca3a810fabb7e2.ctex"]
+source_file="res://Assets/Menu/ShopClosed.png"
+dest_files=["res://.godot/imported/ShopClosed.png-3c09ad3ef931426cae214337e48b5593.ctex"]
 
 [params]
 
