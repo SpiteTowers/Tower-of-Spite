@@ -10,6 +10,7 @@ size = Vector2(1152, 179)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_lo7c0")
+RiseSpeed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912941421]
 position = Vector2(576, 566.5)
@@ -18,6 +19,6 @@ shape = SubResource("RectangleShape2D_2dgnj")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1205793935]
 offset_top = 476.0
 offset_right = 1152.0
-offset_bottom = 656.0
+offset_bottom = 1951.0
 texture = ExtResource("2_lo7c0")
 stretch_mode = 1
