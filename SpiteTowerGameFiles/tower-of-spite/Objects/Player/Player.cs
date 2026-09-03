@@ -130,6 +130,7 @@ public partial class Player : CharacterBody2D
 	}
 	public void DisablePlayer()
 	{
+		Velocity =  Vector2.Zero;
 		Visible = false;
 		SetPhysicsProcess(false);
 		SetProcess(false);

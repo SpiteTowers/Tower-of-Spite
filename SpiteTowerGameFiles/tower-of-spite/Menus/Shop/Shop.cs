@@ -53,7 +53,7 @@ public partial class Shop : Node2D
 	private void RunShop(bool isOpen, List<PackedScene> hazards, List<string[]> abilities = null)
 	{
 		DisplayHazards(hazards);
-		if (isOpen)
+		if (isOpen && false)
 		{
 			DisplayAbilities(abilities);
 		}

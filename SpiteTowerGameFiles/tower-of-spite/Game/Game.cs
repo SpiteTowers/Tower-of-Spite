@@ -57,11 +57,13 @@ public partial class Game : Node2D
 		_levelGenerator.Clear();
 
 		_player = GetNode<Player>("Player");
-
-		_player.EnablePlayer(new Vector2(576, 324));
-		_player.GlobalPosition = new Vector2(576, 324);
+		_player.DisablePlayer();
+		
 
 		_levelGenerator.SpawnRooms(roomCount, _player);
+		
+		_player.EnablePlayer(new Vector2(576, 324));
+		_player.GlobalPosition = new Vector2(576, 324);
 
 		_player.PlayerDied += OnPlayerDied;
 		_player.PlayerTouchedGoal += OnPlayerTouchedGoal;
