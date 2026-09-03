@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c67e136f2c4fw" path="res://Rooms/Scripts/Room.cs" id="1_sd806"]
 [ext_resource type="TileSet" uid="uid://bpg0xql2cohds" path="res://Assets/PlaceholderSprites/Tilemap/terrain.tres" id="2_mdfdh"]
 [ext_resource type="Script" uid="uid://bnu2i3rnfuccj" path="res://Rooms/Scripts/EnemySpawnPoint.cs" id="3_albv4"]
-[ext_resource type="PackedScene" uid="uid://blh4kehaykwwb" path="res://Objects/Player/player.tscn" id="4_rgyea"]
 
 [node name="Room" type="Node2D" unique_id=644749113]
 script = ExtResource("1_sd806")
@@ -133,6 +132,3 @@ Type = 3
 position = Vector2(0, 1312)
 script = ExtResource("3_albv4")
 Type = 4
-
-[node name="Player" parent="." unique_id=1288919104 instance=ExtResource("4_rgyea")]
-position = Vector2(80, 592)
