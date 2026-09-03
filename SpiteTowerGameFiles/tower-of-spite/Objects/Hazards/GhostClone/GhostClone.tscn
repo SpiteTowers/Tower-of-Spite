@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://upfagmvmrv53"]
 
 [ext_resource type="Script" uid="uid://ccsn3rnkavyjh" path="res://Objects/Hazards/GhostClone/GhostClone.cs" id="1_mtcv3"]
-[ext_resource type="Texture2D" uid="uid://eqav6dsiuouv" path="res://Assets/PlaceholderSprites/Hazards/Ghost Clone.png" id="2_a2byf"]
+[ext_resource type="Texture2D" uid="uid://bg5nh6edy8q7h" path="res://Assets/Hazard/GhostClone.png" id="2_mtcv3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gtkgi"]
 radius = 8.0
@@ -15,7 +15,7 @@ Delay = 0.58
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=431877915]
 texture_filter = 1
-texture = ExtResource("2_a2byf")
+texture = ExtResource("2_mtcv3")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2007188289]
 position = Vector2(0, 0.5)

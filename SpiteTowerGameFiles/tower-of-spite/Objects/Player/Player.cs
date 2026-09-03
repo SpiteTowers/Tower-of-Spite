@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
 	private bool _canDash = true;
 	private bool _dashing = false;
 	private const float Speed = 300.0f;
-	private const float JumpVelocity = -400.0f;
+	private const float JumpVelocity = -600.0f;
 	private bool _isOnFloor;
 	private bool _isDead = false;
 

@@ -48,14 +48,17 @@ public partial class Game : Node2D
 	{
 		ActivateEnemy(GameData.ChosenHazard);
 		GameData.ChosenHazard = null;
-		
-		if (GameData.ChosenAbility != null) ActivateAbility(GameData.ChosenAbility);
+
+		if (GameData.ChosenAbility != null)
+			ActivateAbility(GameData.ChosenAbility);
+
 		GameData.ChosenAbility = null;
-		
+
 		_levelGenerator.Clear();
 
 		_player = GetNode<Player>("Player");
 
+		_player.EnablePlayer(new Vector2(576, 324));
 		_player.GlobalPosition = new Vector2(576, 324);
 
 		_levelGenerator.SpawnRooms(roomCount, _player);
@@ -71,27 +74,27 @@ public partial class Game : Node2D
 		if (GameData.BgWallEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.BackgroundWall);
-			GameData.BgWallEnemies.Remove(enemy);
+			GameData.Hazards.Remove(enemy);
 		}
 		else if (GameData.CeilingEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Ceiling);
-			GameData.CeilingEnemies.Remove(enemy);
+			GameData.Hazards.Remove(enemy);
 		}
 		else if (GameData.FloorEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Floor);
-			GameData.FloorEnemies.Remove(enemy);
+			GameData.Hazards.Remove(enemy);
 		}
 		else if (GameData.WallEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Wall);
-			GameData.WallEnemies.Remove(enemy);
+			GameData.Hazards.Remove(enemy);
 		}
 		else if (GameData.ConstantEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Constant);
-			GameData.ConstantEnemies.Remove(enemy);
+			GameData.Hazards.Remove(enemy);
 		}
 	}
 
@@ -112,5 +115,37 @@ public partial class Game : Node2D
 		GameData.FloorNumber++;
 		_levelGenerator.Clear();
 		GoShop?.Invoke();
+	}
+
+	public void Deactivate()
+	{
+		foreach (PackedScene enemy in GameData.ActiveEnemies)
+		{
+			if (GameData.BgWallEnemies.Contains(enemy))
+			{
+				_levelGenerator.DeactivateEnemy(enemy, EnemyType.BackgroundWall);
+				GameData.Hazards.Add(enemy);
+			}
+			else if (GameData.CeilingEnemies.Contains(enemy))
+			{
+				_levelGenerator.DeactivateEnemy(enemy, EnemyType.Ceiling);
+				GameData.Hazards.Add(enemy);
+			}
+			else if (GameData.FloorEnemies.Contains(enemy))
+			{
+				_levelGenerator.DeactivateEnemy(enemy, EnemyType.Floor);
+				GameData.Hazards.Add(enemy);
+			}
+			else if (GameData.WallEnemies.Contains(enemy))
+			{
+				_levelGenerator.DeactivateEnemy(enemy, EnemyType.Wall);
+				GameData.Hazards.Add(enemy);
+			}
+			else if (GameData.ConstantEnemies.Contains(enemy))
+			{
+				_levelGenerator.DeactivateEnemy(enemy, EnemyType.Constant);
+				GameData.Hazards.Add(enemy);
+			}
+		}
 	}
 }

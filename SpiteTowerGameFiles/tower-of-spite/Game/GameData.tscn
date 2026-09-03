@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://duuah5rs13ib8" path="res://Objects/Hazards/Zombie/Zombie.tscn" id="4_souu4"]
 [ext_resource type="PackedScene" uid="uid://upfagmvmrv53" path="res://Objects/Hazards/GhostClone/GhostClone.tscn" id="5_7dwjp"]
 [ext_resource type="PackedScene" uid="uid://d063nncv1i113" path="res://Objects/Hazards/Flood/Flood.tscn" id="6_ies5i"]
+[ext_resource type="PackedScene" uid="uid://b8lwai67qrhbt" path="res://Objects/Hazards/LaserEye/Upgrades/DoomsdayEye.tscn" id="7_bdvcf"]
 
 [node name="GameData" type="Node2D" unique_id=552351591]
 script = ExtResource("1_8h1yo")
-BgWallEnemies = Array[PackedScene]([ExtResource("2_unh53")])
-WallEnemies = Array[PackedScene]([ExtResource("3_1oqqv")])
-CeilingEnemies = Array[PackedScene]([ExtResource("3_1oqqv")])
+BgWallEnemies = Array[PackedScene]([ExtResource("2_unh53"), ExtResource("3_1oqqv")])
+WallEnemies = Array[PackedScene]([])
+CeilingEnemies = Array[PackedScene]([])
 FloorEnemies = Array[PackedScene]([ExtResource("4_souu4")])
 ConstantEnemies = Array[PackedScene]([ExtResource("5_7dwjp"), ExtResource("6_ies5i")])
+DoomsdayEye = ExtResource("7_bdvcf")
