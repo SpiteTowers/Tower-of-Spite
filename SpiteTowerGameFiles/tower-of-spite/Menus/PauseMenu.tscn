@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://046ld6p6el57"]
+
+[ext_resource type="Script" uid="uid://cfgvgn2lmy73w" path="res://Menus/PauseMenu.cs" id="1_o0cs5"]
+[ext_resource type="Texture2D" uid="uid://4u766muvxjby" path="res://Assets/Menu/PauseMenu.png" id="2_hnfxo"]
+
+[node name="PauseMenu" type="Node2D" unique_id=302580809]
+script = ExtResource("1_o0cs5")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=823239292]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_hnfxo")

@@ -1,8 +1,13 @@
+using System;
+using System.Linq;
 using Godot;
 using TowerofSpite.Objects.Player;
 
 public partial class Game : Node2D
 {
+	public event Action GoShop;
+	public event Action GameOver;
+	
 	private LevelGenerator _levelGenerator;
 	private Player _player;
 	private Camera2D _camera;
@@ -10,13 +15,8 @@ public partial class Game : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_player = GetNode<Player>("Player");
-		_player.PlayerDied += OnPlayerDied;
-		_player.ZIndex = 100;
-		_camera = GetNode<Camera2D>("Camera2D");
+		_camera = GetParent().GetNode<Camera2D>("Camera2D");
 		_levelGenerator = GetNode<LevelGenerator>("Level Generator");
-		ActivateEnemies();
-		BuildTower();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,49 +33,84 @@ public partial class Game : Node2D
 		);
 	}
 
-	private void BuildTower()
+	public void StartGame()
 	{
-		_levelGenerator.SpawnRooms(GameData.RoomNumber, _player);
+		GameData.Hazards.AddRange(GameData.BgWallEnemies);
+		GameData.Hazards.AddRange(GameData.WallEnemies);
+		GameData.Hazards.AddRange(GameData.CeilingEnemies);
+		GameData.Hazards.AddRange(GameData.FloorEnemies);
+		GameData.Hazards.AddRange(GameData.ConstantEnemies);
+		
+		GoShop?.Invoke();
 	}
 
-	private void ActivateEnemies()
+	public void BuildTower(int roomCount)
 	{
-		foreach (PackedScene enemy in GameData.BgWallEnemies)
+		ActivateEnemy(GameData.ChosenHazard);
+		GameData.ChosenHazard = null;
+		
+		if (GameData.ChosenAbility != null) ActivateAbility(GameData.ChosenAbility);
+		GameData.ChosenAbility = null;
+		
+		_levelGenerator.Clear();
+
+		_player = GetNode<Player>("Player");
+
+		_player.GlobalPosition = new Vector2(576, 324);
+
+		_levelGenerator.SpawnRooms(roomCount, _player);
+
+		_player.PlayerDied += OnPlayerDied;
+		_player.PlayerTouchedGoal += OnPlayerTouchedGoal;
+
+		_player.ZIndex = 100;
+	}
+
+	private void ActivateEnemy(PackedScene enemy)
+	{
+		if (GameData.BgWallEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.BackgroundWall);
+			GameData.BgWallEnemies.Remove(enemy);
 		}
-		foreach (var enemy in GameData.WallEnemies)
-		{
-			_levelGenerator.ActivateEnemy(enemy, EnemyType.Wall);
-		}
-		foreach (var enemy in GameData.CeilingEnemies)
+		else if (GameData.CeilingEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Ceiling);
+			GameData.CeilingEnemies.Remove(enemy);
 		}
-		foreach (var enemy in GameData.FloorEnemies)
+		else if (GameData.FloorEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Floor);
+			GameData.FloorEnemies.Remove(enemy);
 		}
-		foreach (var enemy in GameData.ConstantEnemies)
+		else if (GameData.WallEnemies.Contains(enemy))
+		{
+			_levelGenerator.ActivateEnemy(enemy, EnemyType.Wall);
+			GameData.WallEnemies.Remove(enemy);
+		}
+		else if (GameData.ConstantEnemies.Contains(enemy))
 		{
 			_levelGenerator.ActivateEnemy(enemy, EnemyType.Constant);
+			GameData.ConstantEnemies.Remove(enemy);
 		}
+	}
+
+	private void ActivateAbility(string ability)
+	{
+		
 	}
 	
 	public void OnPlayerDied()
 	{
 		_player.DisablePlayer();
 		_levelGenerator.Clear();
-		
-		CallDeferred(nameof(RestartLevel));
+		GameOver?.Invoke();
 	}
 
-	private void RestartLevel()
+	public void OnPlayerTouchedGoal()
 	{
-		Vector2 spawnPosition = new Vector2(576, 512);
-
-		_player.EnablePlayer(spawnPosition);
-
-		BuildTower();
+		GameData.FloorNumber++;
+		_levelGenerator.Clear();
+		GoShop?.Invoke();
 	}
 }

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://5adewx67833v"]
+
+[ext_resource type="Script" uid="uid://bujbrm8u7bl6d" path="res://Main.cs" id="1_fos0i"]
+[ext_resource type="PackedScene" uid="uid://j3nub1s0gsep" path="res://Game/Game.tscn" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://d4grtbxaa5svn" path="res://Game/GameData.tscn" id="2_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://b23gkf1xiaydo" path="res://Menus/Shop/Shop.tscn" id="2_r0du0"]
+[ext_resource type="PackedScene" uid="uid://bbvj3hu58qjgc" path="res://Menus/mainMenu.tscn" id="4_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://046ld6p6el57" path="res://Menus/PauseMenu.tscn" id="5_lgr22"]
+
+[node name="Main" type="Node2D" unique_id=1247381462]
+script = ExtResource("1_fos0i")
+
+[node name="GameData" parent="." unique_id=552351591 instance=ExtResource("2_3dxm6")]
+visible = false
+
+[node name="MainMenu" parent="." unique_id=1749972431 instance=ExtResource("4_3dxm6")]
+
+[node name="Game" parent="." unique_id=809076330 instance=ExtResource("1_uu6xs")]
+visible = false
+
+[node name="Shop" parent="." unique_id=18966265 instance=ExtResource("2_r0du0")]
+visible = false
+
+[node name="PauseMenu" parent="." unique_id=302580809 instance=ExtResource("5_lgr22")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1083237668]
+position = Vector2(576, 328)

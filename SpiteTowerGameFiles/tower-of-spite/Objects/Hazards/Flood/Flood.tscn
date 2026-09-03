@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d063nncv1i113"]
 
 [ext_resource type="Script" uid="uid://d1j8vs4kvw8ej" path="res://Objects/Hazards/Flood/Flood.cs" id="1_lo7c0"]
-[ext_resource type="Texture2D" uid="uid://bqh2hitvs4u4g" path="res://Assets/PlaceholderSprites/Hazards/water.png" id="2_6grsh"]
+[ext_resource type="Texture2D" uid="uid://thua3amo78mh" path="res://Assets/Hazard/FloodTile.png" id="2_lo7c0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
-size = Vector2(1152, 171)
+size = Vector2(1152, 179)
 
 [node name="Flood" type="Area2D" unique_id=80395303]
 collision_layer = 4
@@ -12,10 +12,12 @@ collision_mask = 4
 script = ExtResource("1_lo7c0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=912941421]
-position = Vector2(576, 562.5)
+position = Vector2(576, 566.5)
 shape = SubResource("RectangleShape2D_2dgnj")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=102079456]
-position = Vector2(576.00006, 562.5)
-scale = Vector2(3.657143, 0.68400013)
-texture = ExtResource("2_6grsh")
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1205793935]
+offset_top = 476.0
+offset_right = 1152.0
+offset_bottom = 656.0
+texture = ExtResource("2_lo7c0")
+stretch_mode = 1
