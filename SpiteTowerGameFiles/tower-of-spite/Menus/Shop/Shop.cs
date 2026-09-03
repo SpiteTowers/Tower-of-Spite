@@ -225,6 +225,9 @@ public partial class Shop : Node2D
 	{
 		if (GameData.ChosenHazard != null)
 		{
+			_hazardCard1.Modulate = new Color(1, 1, 1);
+			_hazardCard2.Modulate = new Color(1, 1, 1);
+			_hazardCard3.Modulate = new Color(1, 1, 1);
 			_abilityCard1.Modulate = new Color(1, 1, 1);
 			_abilityCard2.Modulate = new Color(1, 1, 1);
 			_abilityCard3.Modulate = new Color(1, 1, 1);
