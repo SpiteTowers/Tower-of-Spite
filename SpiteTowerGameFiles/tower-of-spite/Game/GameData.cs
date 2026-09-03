@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 public static class GameData
 {
-	[Export] public static PackedScene[] BgWallEnemies;
-	[Export] public static PackedScene[] WallEnemies;
-	[Export] public static PackedScene[] CeilingEnemies;
-	[Export] public static PackedScene[] FloorEnemies;
-	[Export] public static PackedScene[] ConstantEnemies;
-	[Export] public static int RoomNumber;
+	public static List<PackedScene> BgWallEnemies;
+	public static List<PackedScene> WallEnemies;
+	public static List<PackedScene> CeilingEnemies;
+	public static List<PackedScene> FloorEnemies;
+	public static List<PackedScene> ConstantEnemies;
 	
-	public static bool IsOpen { get; set; } = true;
+	public static int FloorNumber = 1;
+	public static bool IsOpen { get; set; } = false;
 	public static List<PackedScene> Hazards { get; set; } = [];
 	public static List<string[]> Abilities { get; set; } = [];
 	public static PackedScene ChosenHazard { get; set; }
@@ -31,7 +31,7 @@ public static class GameData
 		}
 		else if (node is GhostClone)
 		{
-			return ["Ghost Clone", "", "Follows your every movement.", ""];
+			return ["Ghost Clone", "res://Assets/ShopAssets/", "Follows your every movement.", ""];
 		}
 		else if (node is Flood)
 		{
@@ -39,11 +39,11 @@ public static class GameData
 		}
 		else if (node is Zombie)
 		{
-			return ["Zombie", "", "Moves back and forth, doesn't one-shot.", ""];
+			return ["Zombie", "res://Assets/ShopAssets/", "Moves back and forth, doesn't one-shot.", ""];
 		}
 		else if (node is DoomsdayEye)
 		{
-			return ["Doomsday Eye", "", "Shoots a large beam throughout the tower.", ""];
+			return ["Doomsday Eye", "res://Assets/ShopAssets/", "Shoots a large beam throughout the tower.", ""];
 		}
 		else
 		{

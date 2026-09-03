@@ -5,6 +5,7 @@ namespace TowerofSpite.Objects.Player;
 public partial class Player : CharacterBody2D
 {
 	[Signal] public delegate void PlayerDiedEventHandler();
+	[Signal] public delegate void PlayerTouchedGoalEventHandler();
 	
 	[Export] public float GravityScale = 1.0f;
 	[Export] public int DashSpeed = 800;
@@ -153,5 +154,10 @@ public partial class Player : CharacterBody2D
 		SetProcess(true);
 		
 		_isDead = false;
+	}
+	
+	public void OnGoalboxAreaEntered(Area2D area)
+	{
+		EmitSignalPlayerTouchedGoal();
 	}
 }

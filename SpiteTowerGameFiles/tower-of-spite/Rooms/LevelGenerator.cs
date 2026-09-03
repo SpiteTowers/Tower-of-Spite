@@ -6,6 +6,8 @@ using System.Linq;
 public partial class LevelGenerator : Node2D
 {
 	[Export] public PackedScene[] RoomOptions;
+	[Export] public PackedScene StartRoom;
+	[Export] public PackedScene EndRoom;
 	
 	private List<Node> _spawnedObjects = new();
 	private HashSet<PackedScene> _activeBgWallEnemies = new();
@@ -29,13 +31,12 @@ public partial class LevelGenerator : Node2D
 
 	public void SpawnRooms(int numRooms, Node2D target)
 	{
-		Rooms = new Room[numRooms];
-		Rooms[0] = RoomOptions[_random.Next(RoomOptions.Length)].Instantiate<Room>();
+		Rooms = new Room[numRooms + 2];
+		Rooms[0] = StartRoom.Instantiate<Room>();
 		GetParent().AddChild(Rooms[0]);
 		_spawnedObjects.Add(Rooms[0]);
-		
 		Rooms[0].Position = Vector2.Zero;
-		for (int i = 1; i < numRooms; i++)
+		for (int i = 1; i <= numRooms; i++)
 		{
 			bool invalidRoom = false;
 			do
@@ -56,6 +57,10 @@ public partial class LevelGenerator : Node2D
 				}
 			} while (invalidRoom);
 		}
+		Rooms[numRooms + 1] = EndRoom.Instantiate<Room>();
+		GetParent().AddChild(Rooms[numRooms + 1]);
+		_spawnedObjects.Add(Rooms[numRooms + 1]);
+		Rooms[numRooms + 1].Position = new Vector2(0, -(numRooms + 1) * 656);
 		SpawnEnemies(target);
 	}
 
@@ -110,7 +115,7 @@ public partial class LevelGenerator : Node2D
 		{
 			EnemySpawnPoint[] spawnPoints =
 				room.GetNode("Enemy Spawn Points").GetChildren().OfType<EnemySpawnPoint>().ToArray();
-
+			if (spawnPoints.Length == 0) continue;
 			foreach (var spawnPoint in spawnPoints)
 			{
 				if (spawnPoint.Type == EnemyType.Constant && roomCount == 0)
@@ -146,6 +151,7 @@ public partial class LevelGenerator : Node2D
 
 	private void SpawnConstantEnemies(Vector2 spawnPoint, Node2D target)
 	{
+		if (_activeConstantEnemies.Count <= 0) return;
 		foreach (PackedScene constantEnemy in _activeConstantEnemies)
 		{
 			Node2D enemy = constantEnemy.Instantiate<Node2D>();
@@ -166,15 +172,20 @@ public partial class LevelGenerator : Node2D
 		switch (type)
 		{
 			case EnemyType.BackgroundWall:
+				if (_activeBgWallEnemies.Count <= 0) return null;
 				pool = _activeBgWallEnemies;
 				break;
+
 			case EnemyType.Ceiling:
+				if (_activeCeilingEnemies.Count <= 0) return null;
 				pool = _activeCeilingEnemies;
 				break;
 			case EnemyType.Wall:
+				if (_activeWallEnemies.Count <= 0) return null;
 				pool = _activeWallEnemies;
 				break;
 			case EnemyType.Floor:
+				if (_activeFloorEnemies.Count <= 0) return null;
 				pool = _activeFloorEnemies;
 				break;
 			default:

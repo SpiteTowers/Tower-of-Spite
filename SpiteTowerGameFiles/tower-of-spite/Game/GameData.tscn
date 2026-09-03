@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d4grtbxaa5svn"]
+
+[ext_resource type="Script" uid="uid://cxaf12qf7eyio" path="res://Game/GameDataSetter.cs" id="1_8h1yo"]
+[ext_resource type="PackedScene" uid="uid://bhitvq4ebc7dj" path="res://Objects/Hazards/Saw/saw.tscn" id="2_unh53"]
+[ext_resource type="PackedScene" uid="uid://ba4676677xurh" path="res://Objects/Hazards/LaserEye/laserEye.tscn" id="3_1oqqv"]
+[ext_resource type="PackedScene" uid="uid://duuah5rs13ib8" path="res://Objects/Hazards/Zombie/Zombie.tscn" id="4_souu4"]
+[ext_resource type="PackedScene" uid="uid://upfagmvmrv53" path="res://Objects/Hazards/GhostClone/GhostClone.tscn" id="5_7dwjp"]
+[ext_resource type="PackedScene" uid="uid://d063nncv1i113" path="res://Objects/Hazards/Flood/Flood.tscn" id="6_ies5i"]
+
+[node name="GameData" type="Node2D" unique_id=552351591]
+script = ExtResource("1_8h1yo")
+BgWallEnemies = Array[PackedScene]([ExtResource("2_unh53")])
+WallEnemies = Array[PackedScene]([ExtResource("3_1oqqv")])
+CeilingEnemies = Array[PackedScene]([ExtResource("3_1oqqv")])
+FloorEnemies = Array[PackedScene]([ExtResource("4_souu4")])
+ConstantEnemies = Array[PackedScene]([ExtResource("5_7dwjp"), ExtResource("6_ies5i")])

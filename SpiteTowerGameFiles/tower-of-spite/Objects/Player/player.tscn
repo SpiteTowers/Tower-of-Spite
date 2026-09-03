@@ -9,6 +9,9 @@ size = Vector2(15, 43)
 [sub_resource type="CircleShape2D" id="CircleShape2D_utjab"]
 radius = 3.535534
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
+size = Vector2(15, 43)
+
 [node name="Player" type="CharacterBody2D" unique_id=1288919104]
 collision_layer = 8
 collision_mask = 7
@@ -31,4 +34,13 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1173082340]
 shape = SubResource("CircleShape2D_utjab")
 
+[node name="Goalbox" type="Area2D" parent="." unique_id=1410994566]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goalbox" unique_id=190126844]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_2dgnj")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="OnHurtboxAreaEntered"]
+[connection signal="area_entered" from="Goalbox" to="." method="OnGoalboxAreaEntered"]

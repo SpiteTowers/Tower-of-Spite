@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public partial class Shop : Node2D
 {
+	public event Action ShopClosed;
+	
 	private readonly Random _random =  new Random();
 	private Button _hazardCard1;
 	private Button _hazardCard2;
@@ -36,19 +38,16 @@ public partial class Shop : Node2D
 		_abilityCard3 = GetNode<Button>("AbilityCards/AbilityCard3");
 		_shopClosed = GetNode<Sprite2D>("ShopClosed");
 		_playerGold = GetNode<Label>("PlayerGold");
+	}
 
+	public void StartShop()
+	{
 		_playerGold.Text = $"Player Gold:{GameData.PlayerMoney}";
 
-		if (GameData.IsOpen)
-		{
-			_shopClosed.Visible = false;
-		}
-		else
-		{
-			_shopClosed.Visible = true;
-		}
+		_shopClosed.Visible = !GameData.IsOpen;
 		
-		RunShop(GameData.IsOpen, GameData.Hazards, GameData.Abilities);
+		RunShop(GameData.IsOpen, new List<PackedScene>(GameData.Hazards), new List<string[]>(GameData.Abilities)
+		);
 	}
 
 	private void RunShop(bool isOpen, List<PackedScene> hazards, List<string[]> abilities = null)
@@ -224,6 +223,9 @@ public partial class Shop : Node2D
 
 	public void OnExitShopPressed()
 	{
-		GetTree().ChangeSceneToFile("res://Game/Game.tscn");
+		if (GameData.ChosenHazard != null)
+		{
+			ShopClosed?.Invoke();
+		}
 	}
 }
