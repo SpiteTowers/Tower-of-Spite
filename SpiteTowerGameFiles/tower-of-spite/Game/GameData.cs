@@ -15,7 +15,7 @@ public static class GameData
 	public static int FloorNumber = 1;
 	public static bool IsOpen { get; set; } = false;
 	public static List<PackedScene> Hazards { get; set; } = [];
-	public static List<string[]> Abilities { get; set; } = [];
+	public static List<string[]> Abilities { get; set; } = [new string[3], new string[3], new string[3]];
 	public static PackedScene ChosenHazard { get; set; }
 	public static string ChosenAbility { get; set; }
 	public static int PlayerMoney { get; set; } = 1000;
