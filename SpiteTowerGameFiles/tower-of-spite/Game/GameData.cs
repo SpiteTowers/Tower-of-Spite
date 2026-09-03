@@ -9,7 +9,9 @@ public static class GameData
 	public static List<PackedScene> CeilingEnemies;
 	public static List<PackedScene> FloorEnemies;
 	public static List<PackedScene> ConstantEnemies;
-	
+	public static List<PackedScene> ActiveEnemies;
+
+	public static PackedScene DoomsdayEye;
 	public static int FloorNumber = 1;
 	public static bool IsOpen { get; set; } = false;
 	public static List<PackedScene> Hazards { get; set; } = [];
@@ -31,7 +33,7 @@ public static class GameData
 		}
 		else if (node is GhostClone)
 		{
-			return ["Ghost Clone", "res://Assets/ShopAssets/", "Follows your every movement.", ""];
+			return ["Ghost Clone", "res://Assets/ShopAssets/ghostcloneshop.png", "Follows your every movement.", ""];
 		}
 		else if (node is Flood)
 		{
@@ -39,7 +41,7 @@ public static class GameData
 		}
 		else if (node is Zombie)
 		{
-			return ["Zombie", "res://Assets/ShopAssets/", "Moves back and forth, doesn't one-shot.", ""];
+			return ["Zombie", "res://Assets/ShopAssets/zombieshop.png", "Moves back and forth, doesn't one-shot.", ""];
 		}
 		else if (node is DoomsdayEye)
 		{
@@ -48,6 +50,15 @@ public static class GameData
 		else
 		{
 			return null;
+		}
+	}
+
+	public static void AddUpgradesToShop()
+	{
+		Node2D hazard = ChosenHazard.Instantiate<Node2D>();
+		if (hazard is LaserEye)
+		{
+			Hazards.Add(DoomsdayEye);
 		}
 	}
 }

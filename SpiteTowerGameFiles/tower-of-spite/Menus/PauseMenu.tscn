@@ -10,3 +10,20 @@ script = ExtResource("1_o0cs5")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_hnfxo")
+
+[node name="Button" type="Button" parent="." unique_id=531344150]
+offset_right = 630.0
+offset_bottom = 225.0
+theme_override_font_sizes/font_size = 100
+text = "Resume"
+
+[node name="Button2" type="Button" parent="." unique_id=2146046901]
+offset_left = 613.0
+offset_top = 418.0
+offset_right = 1153.0
+offset_bottom = 655.0
+theme_override_font_sizes/font_size = 100
+text = "Exit"
+
+[connection signal="pressed" from="Button" to="." method="OnUnpause"]
+[connection signal="pressed" from="Button2" to="." method="OnExit"]

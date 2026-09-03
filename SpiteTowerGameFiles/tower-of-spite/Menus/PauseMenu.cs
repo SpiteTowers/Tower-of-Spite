@@ -14,4 +14,14 @@ public partial class PauseMenu : Node2D
 	public override void _Process(double delta)
 	{
 	}
+
+	public void OnUnpause()
+	{
+		Unpause?.Invoke();
+	}
+
+	public void OnExit()
+	{
+		Exit?.Invoke();
+	}
 }
