@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D
 	[Signal] public delegate void PlayerTouchedGoalEventHandler();
 	
 	[Export] public float GravityScale = 1.0f;
-	[Export] public int DashSpeed = 800;
+	[Export] public int DashSpeed = 650;
 	[Export] public float DashTime = 0.15f;
 	[Export] public float DashDeceleration = 2500.0f;
 	
@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
 	private bool _canDash = true;
 	private bool _dashing = false;
 	private const float Speed = 300.0f;
-	private const float JumpVelocity = -600.0f;
+	private const float JumpVelocity = -425.0f;
 	private bool _isOnFloor;
 	private bool _isDead = false;
 
