@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://bu8h46jhncl1p" path="res://Rooms/LevelGenerator.cs" id="1_bxie3"]
 [ext_resource type="PackedScene" uid="uid://cqxiepi6r4mb3" path="res://Rooms/room_template.tscn" id="2_pfgc2"]
 [ext_resource type="PackedScene" uid="uid://7sxg4ylkeo2v" path="res://Rooms/Rooms/StartRoom.tscn" id="3_ayrs4"]
+[ext_resource type="PackedScene" uid="uid://67ga5eioowx5" path="res://Rooms/Rooms/room1.tscn" id="3_mu0hj"]
 [ext_resource type="PackedScene" uid="uid://dx1jjyl074p7h" path="res://Rooms/Rooms/EndRoom.tscn" id="4_mu0hj"]
 
 [node name="Level Generator" type="Node2D" unique_id=841867252]
 script = ExtResource("1_bxie3")
-RoomOptions = Array[PackedScene]([ExtResource("2_pfgc2")])
+RoomOptions = Array[PackedScene]([ExtResource("2_pfgc2"), ExtResource("3_mu0hj")])
 StartRoom = ExtResource("3_ayrs4")
 EndRoom = ExtResource("4_mu0hj")
 metadata/_edit_group_ = true
