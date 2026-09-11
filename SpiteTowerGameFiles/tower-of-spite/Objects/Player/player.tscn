@@ -1,17 +1,44 @@
 [gd_scene format=3 uid="uid://blh4kehaykwwb"]
 
-[ext_resource type="Script" uid="uid://bh7mjied82op1" path="res://Objects/Player/Player.cs" id="1_yw17q"]
-[ext_resource type="Texture2D" uid="uid://ryqq5oundue6" path="res://Assets/PlaceholderSprites/Player/MainChar1.png" id="2_yw17q"]
+[ext_resource type="Script" uid="uid://m7vuv076jffp" path="res://Objects/Player/PlrRecode.cs" id="1_yw17q"]
+[ext_resource type="Texture2D" uid="uid://dfjav1a1b3tym" path="res://Assets/Player/MainChar1.png" id="2_bpp7x"]
+[ext_resource type="Texture2D" uid="uid://bd0mv62noklaj" path="res://Assets/Player/MainChar2.png" id="3_jllbl"]
+[ext_resource type="Texture2D" uid="uid://157jb63y1dgl" path="res://Assets/Player/MainChar3.png" id="4_0mj7g"]
+[ext_resource type="Texture2D" uid="uid://b2qn0rbknvvt7" path="res://Assets/Player/MainChar4.png" id="5_thffa"]
+[ext_resource type="Texture2D" uid="uid://cihyqrrstihw3" path="res://Assets/Player/MainChar5.png" id="6_xtia4"]
+[ext_resource type="Texture2D" uid="uid://434prbifwk4b" path="res://Assets/Player/MainChar6.png" id="7_5xe3a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6knbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bpp7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jllbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0mj7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_thffa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xtia4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5xe3a")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6knbt"]
-size = Vector2(15, 43)
+size = Vector2(11, 40)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgyea"]
 radius = 4.0
-height = 28.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dgnj"]
-size = Vector2(15, 43)
 
 [node name="Player" type="CharacterBody2D" unique_id=1288919104]
 collision_layer = 8
@@ -20,12 +47,11 @@ script = ExtResource("1_yw17q")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=935340788]
-texture_filter = 1
-texture = ExtResource("2_yw17q")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1967831246]
+sprite_frames = SubResource("SpriteFrames_6knbt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1142243847]
-position = Vector2(-0.5, 2.5)
+[node name="Platform Collision" type="CollisionShape2D" parent="." unique_id=1142243847]
+position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_6knbt")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1708840807]
@@ -33,15 +59,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1173082340]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_rgyea")
 
-[node name="Goalbox" type="Area2D" parent="." unique_id=1410994566]
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goalbox" unique_id=190126844]
-position = Vector2(-0.5, 2.5)
-shape = SubResource("RectangleShape2D_2dgnj")
-
 [connection signal="area_entered" from="Hurtbox" to="." method="OnHurtboxAreaEntered"]
-[connection signal="area_entered" from="Goalbox" to="." method="OnGoalboxAreaEntered"]

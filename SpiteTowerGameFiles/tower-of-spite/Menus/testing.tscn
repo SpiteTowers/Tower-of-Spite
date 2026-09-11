@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://upfagmvmrv53" path="res://Objects/Hazards/GhostClone/GhostClone.tscn" id="5_gyyt1"]
 [ext_resource type="PackedScene" uid="uid://d063nncv1i113" path="res://Objects/Hazards/Flood/Flood.tscn" id="6_gyyt1"]
 [ext_resource type="TileSet" uid="uid://bpg0xql2cohds" path="res://Assets/PlaceholderSprites/Tilemap/terrain.tres" id="7_gyyt1"]
-[ext_resource type="PackedScene" uid="uid://duuah5rs13ib8" path="res://Objects/Hazards/Zombie/Zombie.tscn" id="8_or64w"]
 [ext_resource type="PackedScene" uid="uid://b8lwai67qrhbt" path="res://Objects/Hazards/LaserEye/Upgrades/DoomsdayEye.tscn" id="7_q2goc"]
+[ext_resource type="PackedScene" uid="uid://duuah5rs13ib8" path="res://Objects/Hazards/Zombie/Zombie.tscn" id="8_or64w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2dgnj"]
 radius = 29.068884
@@ -21,8 +21,8 @@ EyeScene = ExtResource("3_3a8at")
 SawScene = ExtResource("4_hj1kl")
 GhostCloneScene = ExtResource("5_gyyt1")
 FloodScene = ExtResource("6_gyyt1")
-ZombieScene = ExtResource("8_or64w")
 DoomsdayScene = ExtResource("7_q2goc")
+ZombieScene = ExtResource("8_or64w")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=312224665]
 position = Vector2(0, -1)
@@ -63,6 +63,7 @@ offset_top = 8.0
 offset_right = 822.0
 offset_bottom = 40.0
 text = "Zombie Testing"
+
 [node name="DoomsdayTesting" type="Button" parent="." unique_id=1686134704]
 offset_left = 7.0
 offset_top = 48.0
@@ -89,6 +90,9 @@ texture = ExtResource("5_3a8at")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Blade" unique_id=1783791658]
 position = Vector2(1089, 161)
 shape = SubResource("CircleShape2D_2dgnj")
+
+[node name="Player" parent="." unique_id=1288919104 instance=ExtResource("2_oa8s1")]
+position = Vector2(606, 498)
 
 [connection signal="pressed" from="EyeTesting" to="." method="OnEyeTestingPressed"]
 [connection signal="pressed" from="SawTesting" to="." method="OnSawTestingPressed"]
