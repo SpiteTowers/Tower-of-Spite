@@ -36,7 +36,7 @@ position = Vector2(960, 656)
 [node name="Enemy Spawn Points" type="Node2D" parent="." unique_id=1030021841]
 
 [node name="BgWall" type="Marker2D" parent="Enemy Spawn Points" unique_id=625109177]
-position = Vector2(672, 160)
+position = Vector2(664, 152)
 script = ExtResource("3_albv4")
 Length = 192
 
@@ -57,12 +57,12 @@ script = ExtResource("3_albv4")
 Type = 3
 
 [node name="Bgwall" type="Marker2D" parent="Enemy Spawn Points" unique_id=1548838808]
-position = Vector2(528, 288)
+position = Vector2(536, 296)
 script = ExtResource("3_albv4")
 Length = 96
 
 [node name="Bgwall2" type="Marker2D" parent="Enemy Spawn Points" unique_id=1717649421]
-position = Vector2(736, 192)
+position = Vector2(728, 200)
 script = ExtResource("3_albv4")
 Length = 80
 
@@ -89,7 +89,7 @@ script = ExtResource("3_albv4")
 Length = 80
 
 [node name="Bgwall7" type="Marker2D" parent="Enemy Spawn Points" unique_id=831244392]
-position = Vector2(32, 384)
+position = Vector2(56, 376)
 script = ExtResource("3_albv4")
 Length = 80
 
@@ -99,7 +99,7 @@ script = ExtResource("3_albv4")
 Length = 176
 
 [node name="Bgwall9" type="Marker2D" parent="Enemy Spawn Points" unique_id=1754657843]
-position = Vector2(624, 496)
+position = Vector2(616, 504)
 script = ExtResource("3_albv4")
 Length = 112
 
